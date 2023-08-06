@@ -1,23 +1,15 @@
 let h11 = document.getElementById("h11");
 let h12 = document.getElementById("h12");
-let h13 = document.getElementById("h13");
-let h14 = document.getElementById("h14");
-let h15 = document.getElementById("h15");
-let h16 = document.getElementById("h16");
+// let h13 = document.getElementById("h13");
+// let h14 = document.getElementById("h14");
+// let h15 = document.getElementById("h15");
+// let h16 = document.getElementById("h16");
 let count = 0;
 
 
 
 let initBtn = document.getElementById("init");
 initBtn.addEventListener('click', initFunc);
-initBtn.addEventListener('mouseover', mouseover);
-initBtn.addEventListener('mouseout', mouseout);
-initBtn.addEventListener('focus', focus);
-initBtn.addEventListener('blur', blur);
-initBtn.addEventListener('mousedown', mousedown);
-initBtn.addEventListener('mouseup', mouseup);
-initBtn.addEventListener('keydown', keydown);
-initBtn.addEventListener('keyup', keyup);
 
 function initFunc()
 {
