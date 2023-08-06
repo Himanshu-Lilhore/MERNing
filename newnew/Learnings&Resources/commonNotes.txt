@@ -1,0 +1,2 @@
+btn.textContent = i;   >   btn.setAttribute("textContent", i);
+

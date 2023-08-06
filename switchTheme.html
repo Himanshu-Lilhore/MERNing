@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<body bgcolor = "grey">
+<h2 id="time">time</h2>
+<h3 id="color">default</h3>
+<button id="switchTheme" style="background:pink">Switch Theme</button>
+<button id="switchBlink" style="background:lime">Switch Blinking</button>
+<script>
+
+function changeBG()
+{
+  var bgcolor = document.body.getAttribute("bgcolor");
+  
+  if(bgcolor=="grey")
+    bgcolor = "white";
+  else
+    bgcolor = "grey";
+  document.getElementById("color").innerHTML = bgcolor;
+  document.body.setAttribute("bgcolor",bgcolor);
+}
+var blink = true;
+function changeBlink()
+{
+  blink = !blink;
+}
+
+function myFunction() 
+{
+  let d = new Date();
+  let day = true;
+  let hrs = d.getHours();
+  let min = d.getMinutes();
+  let sec = d.getSeconds();
+  if(hrs>12)
+  {
+    hrs = hrs-12;
+    day = false;
+  }
+  document.getElementById("time").innerHTML=
+  (hrs>9?"":"0") + hrs + ":" +
+  (min>9?"":"0") + min + ":" +
+  (sec>9?"":"0") + sec +
+  (day?" AM":" PM");
+  if(blink)
+    changeBG();
+}
+
+setInterval(myFunction, 1000);
+//setTimeout(myFunction, 3000);
+
+
+document.getElementById("switchBlink").onclick = changeBlink;
+document.getElementById("switchTheme").onclick = changeBG;
+
+</script>
+</body>
+</html>

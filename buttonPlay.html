@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body bgcolor = "grey">
+<h2 id="display">default<h2>
+<h2 id="buton">default id<h2>
+<button id="jumper" style="background:pink; top:200px; left:200px">Jump</button>
+<script>
+
+function jump()
+{
+  var num1 = Math.ceil((Math.random() * 100000)%1000);
+  var num2 = Math.ceil((Math.random() * 100000)%1000);
+
+  var str = "background:lime; position = 'absolute'; top:\'" + num1 + "px\'; left:\'" + num2 + "px\'";
+
+  document.getElementById("display").innerHTML = str;
+  var butt = document.getElementById("jumper");
+  document.getElementById("buton").innerHTML = butt;
+  butt.style.background = 'lime';
+  butt.style.position = 'absolute';
+  butt.style.top = num1;
+  butt.style.left = num2;
+}
+
+
+document.getElementById("jumper").onclick = jump;
+
+</script>
+</body>
+</html>
