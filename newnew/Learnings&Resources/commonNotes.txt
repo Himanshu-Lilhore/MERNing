@@ -1,2 +1,3 @@
 btn.textContent = i;   >   btn.setAttribute("textContent", i);
 
+location.reload();   // to reload the page
