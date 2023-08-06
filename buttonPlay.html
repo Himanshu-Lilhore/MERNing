@@ -18,12 +18,15 @@ function jump()
   document.getElementById("buton").innerHTML = butt;
   butt.style.background = 'lime';
   butt.style.position = 'absolute';
-  butt.style.top = num1;
-  butt.style.left = num2;
+  butt.style.top = num1 + 'px';
+  butt.style.left = num2 + 'px';
+
 }
 
 
-document.getElementById("jumper").onclick = jump;
+let btn = document.getElementById("jumper");
+btn.addEventListener('click', jump);
+
 
 </script>
 </body>

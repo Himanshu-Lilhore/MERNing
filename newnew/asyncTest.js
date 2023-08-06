@@ -25,7 +25,7 @@ asyncTest();
 function initFunc()
 {
     location.reload();
-}
+};
 
 // let b1 = document.getElementById("btn1");
 // let b2 = document.getElementById("btn2");
