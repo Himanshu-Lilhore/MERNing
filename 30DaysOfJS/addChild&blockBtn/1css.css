@@ -1,0 +1,15 @@
+h1{
+    text-align:center;
+}
+
+.by-inner{
+    color:purple;
+}
+
+.by-append{
+    color:red;
+}
+
+.btn-container{
+    display:block;
+}
