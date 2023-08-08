@@ -1,0 +1,37 @@
+body{
+    background:grey;
+}
+
+#handlerHolder{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 20%;
+    padding-right: 20%;
+}
+
+h1{
+    text-align:center;
+    color:purple;
+}
+
+.task{
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 20%;
+    padding-right: 20%;
+}
+
+.taskElement{
+    display: inline;
+    color:navy;
+}
+
+.taskHandler{
+    display: inline-block;
+    border:2px solid black;
+    border-radius: 8%;
+    height:min-content;
+}
