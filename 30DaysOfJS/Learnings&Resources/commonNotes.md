@@ -75,3 +75,51 @@ justify-content: space-between;  /* to horizontally keep the elements at same di
 justify-content: center;  /* to horizontally keep all the elements clumped at center of parent */
 align-items: center;   /* align vertically at center */
 ```
+
+
+### Most commonly used event listeners :
+- click - when the element clicked
+- dblclick - when the element double clicked
+- mouseenter - when the mouse point enter to the element
+- mouseleave - when the mouse pointer leave the element
+- mousemove - when the mouse pointer move on the element
+- mouseover - when the mouse pointer move on the element
+- mouseout -when the mouse pointer out from the element
+- input -when value enter to input field
+- change -when value change on input field
+- blur -when the element is not focused
+- keydown - when a key is down
+- keyup - when a key is up
+- keypress - when we press any key
+- onload - when the browser has finished loading a page
+
+
+### e.target.value
+Refer to this html code
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document Object Model:30 Days Of JavaScript</title>
+  </head>
+
+  <body>
+    <h1>Data Binding using input or change event</h1>
+
+    <input type="text" placeholder="say something" />
+    <p></p>
+
+    <script>
+      const input = document.querySelector('input')
+      const p = document.querySelector('p')
+
+      input.addEventListener('input', e => {
+        p.textContent = e.target.value
+      })
+    </script>
+  </body>
+</html>
+```
+In the given code, e.target.value refers to the value of the input element. The **e is an event object** that is passed to the event handler function when the event is triggered. The target property of the event object refers to the element that triggered the event, which in this case is the input element.
+
+
