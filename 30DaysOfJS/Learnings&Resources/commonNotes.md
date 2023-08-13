@@ -123,3 +123,58 @@ Refer to this html code
 In the given code, e.target.value refers to the value of the input element. The **e is an event object** that is passed to the event handler function when the event is triggered. The target property of the event object refers to the element that triggered the event, which in this case is the input element.
 
 
+### Parse .json files using :
+```javascript
+async function fetchData() {
+  try {
+    const response = await fetch('data.json');
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error('Error fetching JSON:', error);
+  }
+}
+```
+
+
+### Using async functions with synchronous code
+If you are writing a synchronous js script and want to call an async function inbetween, then you'll need to use promises on all the lines which come after that call, like :
+
+```javascript
+// want to do this :
+fetchData()   // async function called
+showAll()     // sync funciton called
+
+// The above sequence of calls won't work properly because fetchData is async so it'll start running in the background and pass the execution to next lines and showAll will be called, and if showAll depends on the fetchData results then it'll give wrong outputs, so to resolve this issue we can do this :
+async function fetchData() {
+  const response = await fetch('../data/countries_data.json');
+  data = await response.json();
+  showAll();
+}
+// Here we called showAll function directly into the definition of fetchData itself
+```
+
+>**So when you are having async function calls in the code, instead of calling them inbetween the synchronous code write all the script inside the definition of async function definition.**
+
+```javascript
+// Same definition can also be written like this using promises:
+async function fetchData() {
+  fetch('../data/countries_data.json')
+  .then(response => response.json())
+  .then(parsedData => {
+      data = parsedData;
+      showAll();
+  })
+  .catch(error => {
+      console.error('Error fetching JSON:', error);
+  });
+}
+```
+
+
+### Timers and Delays (setTimeout, setInterval) behaviour in async vs sync code :
+The timers and delays behave asynchronously when they are called inside async function, they won't pause/affect the functionality of the part of code after them, but in sync function they will pause/affect the functionality of the part after.
+> Important thing to note here is, if you call a synchronous function within an async function it will act async only, because it's part of async now.
+
+### CSS border
+When using the border property, you need to specify the border style, width, and color. If any of these values are missing, the border might not be displayed as expected.

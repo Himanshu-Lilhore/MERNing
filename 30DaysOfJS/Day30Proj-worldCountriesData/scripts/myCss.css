@@ -1,5 +1,29 @@
 body{
     align-content: center;
+    background: rgb(32, 32, 32);
+    color:rgb(209, 209, 209);
+    font-size: large;
 }
 
 
+.countryCard{
+    display: inline-block;
+    border: 1px solid white;
+    margin: 0.4cm;
+    padding: 0.3cm;
+    background: rgb(48, 12, 48);
+}
+
+.flag{
+    height: 3cm;
+    width: 4.5cm;
+}
+
+.countryName {
+    font-weight: bold;
+    color: orange;
+}
+
+.otherProp{
+    font-size:medium;
+}
