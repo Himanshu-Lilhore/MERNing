@@ -49,7 +49,7 @@ First line wouldn't work (as intended) because even though we are just telling t
 ### Navigate to parent, remove child
 ```javascript
 let parentIdentifier = childIdentifier.parentNode    // get parent
-someParent.removeChild(someChild)    // remove child
+parentIdentifier.removeChild(childIdentifier)    // remove child
 ```
 
 
@@ -178,3 +178,4 @@ The timers and delays behave asynchronously when they are called inside async fu
 
 ### CSS border
 When using the border property, you need to specify the border style, width, and color. If any of these values are missing, the border might not be displayed as expected.
+
