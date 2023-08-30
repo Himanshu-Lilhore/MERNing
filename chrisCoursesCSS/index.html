@@ -1,0 +1,108 @@
+<html>
+    <!-- https://www.figma.com/file/LJ8KC40jSPGR4rgEim2qYC/Chris-Courses---CSS?type=design&node-id=1-2&mode=design&t=vT918XyuxkNa4SHE-0 -->
+    <style>
+        body{
+            margin: 0;
+            background-color: grey;
+        }
+        .bg-grey-900{
+            background-color: #121826;
+        }
+        .text-white{
+            color: white;
+        }
+
+        .block{
+            display: block;  
+            /* element takes up full width of the parent container */
+        }
+        .inline{
+            display: inline;
+            /* element takes up only the space it needs, and things line margin can't be used with inline display property */
+        }
+        .inline-block{
+            display: inline-block;
+            /* same as inline but here we can use things like margin */
+        }
+        .hidden{
+            display: none;
+            /* hides the element from the page */
+        }
+
+        .flex{
+            display:flex;
+            /* when applied to the parent, it treats the parent container as a box and flex property is applied to all the immediate children */
+            /* whatever display properties the child element might have, applying flex to the parent overwrites them */
+            /* by default flex will give them inline display */
+            /* flex unlock a few sub-flex properties like justify-context, align-items  which helps align the child elements */
+            /*but those properties are also applied to parent only to see the affect in behaviour of children */ 
+            /* (see how we use justify-between class along with flex class) */
+            /* read more here : https://css-tricks.com/snippets/css/a-guide-to-flexbox/ */
+        }
+        .justify-between{
+            justify-content: space-between;
+            /* a sub-flex property, which helps align the elements horizontally within the parent container */
+        }
+        .justify-center{
+            justify-content: center;
+        }
+        .items-center{
+            align-items: center;
+            /* another sub-flex property, it's used to align all the children vertically with respect to the parent container */
+        }
+
+        /* 
+        Three ways to write margin/padding properties :
+            1. Globally
+                margin : 8px; --- sets top, bottom, left, right  all to 8px.
+            2. Individually
+                padding-top : 15px;
+                padding-bottom : 12px;
+                padding-right : 9px;
+                padding-left : 7px;
+            3. Together
+                margin : 16px 7px --- sets top & botton to 16px, and sets left & right to 7px
+                padding : 16px 12px 7px 9px --- (clockwise from top) top 16, right 12, bottom 7, left 9
+
+        ***Also a NOTE to remember :
+            If you include multiple classses in a tag with clashing properties, 
+            the bottom most written class properties will overwrite the properties from classes above
+         */
+        .m-8{
+            margin: 8px;
+            /* margin : the gap between border of element and adjacent element. Interaction with marginalized space has nothing to do with element itself */
+            /* sets top bottom left right margin to 8px */
+        }
+        .p-8{
+            padding: 8px;
+            /* padding : the gap between border of element and text within. If you click on padded space, its considered as interaction with that element */
+            /* sets top bottom left right padding to 8px */
+        }
+        .py-16{
+            padding-top: 16px;
+            padding-bottom: 16px;
+            /* setting y axis paddings to 16px */
+        }
+        .px-8{
+            padding-left: 8px;
+            padding-right: 8px;
+        }
+    </style>
+    <head></head>
+    <body>
+        <header class="bg-grey-900 flex justify-between">
+            <div class="flex justify-center items-center py-16">
+                <img src="./logo.svg" alt="LogoHere" style="padding: 20px 30px 20px 80px"/>
+                <a href="" class="text-white px-8 py-16">Pricing</a>
+                <a href="" class="text-white px-8 py-16">Courses</a>
+                <a href="" class="text-white px-8 py-16">Blog</a>
+                <a href="" class="text-white px-8 py-16">Forum</a>
+            </div>
+            <div class="flex justify-center items-center py-16">
+                <a href="" class="text-white px-8 py-16">Login</a>
+                <button style="margin: 20px 80px 20px 20px;">Sign Up</button>
+            </div>
+        </header>
+
+    </body>
+</html>
