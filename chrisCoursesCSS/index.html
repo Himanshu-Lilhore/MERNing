@@ -154,6 +154,22 @@
         </style>
     </head>
 
+
+    <!-- 
+    Position relative : 
+        When you set position: relative; on an element, it remains within the normal document flow, and its position is determined relative to where it would have been if it were not positioned. In other words, it respects the space it would have occupied in the document flow.
+
+        You can use the top, right, bottom, and left properties to offset the element from its normal position. These offsets are applied relative to the element's initial position. 
+    
+    Position absolute : 
+        When you set position: absolute; on an element, it is taken out of the normal document flow, and its position is determined relative to its nearest positioned ancestor (an ancestor with a position value other than static, which is the default).
+
+        If there is no positioned ancestor, it is positioned relative to the initial containing block (usually the viewport).
+    
+    Also, in relative there's no relevance with the parent container, but the absolute positioning depends on the parent, it will find the nearest ancester having a non static position and be absolute with respect to that, while the relative is just relative change with respect to the original position of the element in the original flow.
+    Having said that, two element might need to be in relative positioning to perform z axis operations of hiding behind each other.
+    -->
+
     <body>
         <header class="flex justify-between relative z-10">
             <div class="flex justify-center items-center py-16">
@@ -169,18 +185,18 @@
             </div>
         </header>
 
-        <section class="relative" style="top:-125px;">
+        <section class="relative">
             <video loop="loop" 
                    autoplay="autoplay" 
                    muted="muted" 
-                   class="width-full object-cover" 
-                   style="min-height: 550px;" 
+                   class="width-full object-cover relative" 
+                   style="min-height: 550px; top:-125px;" 
                    src="./videos/galaxy.mp4">
             </video>
 
             <!-- <img src="./img/bgImage.png" alt="bgImage" class="width-full"/> -->
             
-            <div style="max-width: 538px;">
+            <div style="max-width: 538px; position:absolute; top:0px; padding:80px 0px 0px 80px;">
                 <!-- each of these things we are styling here with specific number we given in the design itself.
                 furthermore, we gave 538 as max width for that container because it limiting the container size helped breaking the line instead of using br tag.
                 And the max width of the container also we stole from the design itself -->
@@ -188,7 +204,7 @@
                     Turbocharge your 
                     <span style="color:#90CAC7">development career</span>
                 </h1>
-                <p style="max-width: 449px; font-size: 20px; margin-top: 30px;">
+                <p style="color:white; max-width: 449px; font-size: 20px; margin-top: 30px;">
                     Chris Courses provides students and professionals a college-level web development education.
                 </p>
                 <button class="p-custom border-none bg-white" style="color:#539D98; padding: 14px 25px; border-radius:5px; font-size: 18px; margin-top: 30px;">
