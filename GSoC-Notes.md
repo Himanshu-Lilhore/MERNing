@@ -183,9 +183,9 @@ When using the border property, you need to specify the border style, width, and
 
 
 
-# CSS (chriscourses)
+# CSS
 
-- You can find tutorials at [Chris Courses](https://chriscourses.com/courses/css/videos/position-absolute).
+- Following a tutorial based on [Chris Courses](https://chriscourses.com/courses/css/videos/position-absolute).
 - Access the Figma design file [here](https://www.figma.com/file/LJ8KC40jSPGR4rgEim2qYC/Chris-Courses---CSS?type=design&node-id=1-2&mode=design&t=vT918XyuxkNa4SHE-0).
 
 ## Display properties :
