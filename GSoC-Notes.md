@@ -1,4 +1,4 @@
-# GSoC notes
+# Javascript basics
 
 ```javascript
 btn.textContent = i
@@ -179,3 +179,156 @@ The timers and delays behave asynchronously when they are called inside async fu
 ### CSS border
 When using the border property, you need to specify the border style, width, and color. If any of these values are missing, the border might not be displayed as expected.
 
+
+
+
+
+# CSS (chriscourses)
+
+- You can find tutorials at [Chris Courses](https://chriscourses.com/courses/css/videos/position-absolute).
+- Access the Figma design file [here](https://www.figma.com/file/LJ8KC40jSPGR4rgEim2qYC/Chris-Courses---CSS?type=design&node-id=1-2&mode=design&t=vT918XyuxkNa4SHE-0).
+
+## Display properties :
+```CSS
+.block{
+  display: block;  
+  /* element takes up full width of the parent container */
+}
+.inline{
+  display: inline;
+  /* element takes up only the space it needs, and things line margin can't be used with inline display property */
+}
+.inline-block{
+  display: inline-block;
+  /* same as inline but here we can use things like margin */
+}
+.hidden{
+  display: none;
+  /* hides the element from the page */
+}
+.flex{
+  display: flex;
+  /* explained below */
+}
+```
+### Display : flex
+- When applied to the parent, it treats the parent container as a box and flex property is applied to all the immediate children.
+- Whatever display properties the child element might have, applying flex to the parent overwrites them.
+- By default flex will give them inline display
+- flex unlocks a few sub-flex properties like justify-context, align-items  which helps align the child elements, but these properties are also applied to parent only to see the affect in behaviour of children.  
+(see below how we use justify-between class along with flex class)  
+Read more here : [CSS tricks](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+```CSS
+.flex{
+  display:flex;
+}
+.justify-between{
+  justify-content: space-between;
+  /* a sub-flex property, which helps align the elements horizontally within the parent container */
+}
+.justify-center{
+  justify-content: center;
+}
+.items-center{
+  align-items: center;
+  /* another sub-flex property, it's used to align all the children vertically with respect to the parent container */
+}
+```
+
+## Margin & Padding 
+Three ways to write margin/padding properties :
+  1. Globally
+    margin : 8px; --- sets top, bottom, left, right  all to 8px.
+  2. Individually
+    padding-top : 15px;
+    padding-bottom : 12px;
+    padding-right : 9px;
+    padding-left : 7px;
+  3. Together
+    margin : 16px 7px --- sets top & botton to 16px, and sets left & right to 7px
+    padding : 16px 12px 7px 9px --- (clockwise from top) top 16, right 12, bottom 7, left 9
+
+> Also a NOTE to remember : If you include multiple classses in a tag with clashing properties, the bottom most written class properties will overwrite the properties from classes above.
+```css
+.m-8{
+  margin: 8px;
+  /* margin : the gap between border of element and adjacent element. Interaction with marginalized space has nothing to do with element itself */
+  /* sets top bottom left right margin to 8px */
+}
+.p-8{
+  padding: 8px;
+  /* padding : the gap between border of element and text within. If you click on padded space, its considered as interaction with that element */
+  /* sets top bottom left right padding to 8px */
+}
+.py-16{
+  padding-top: 16px;
+  padding-bottom: 16px;
+  /* setting y axis paddings to 16px */
+}
+```
+
+
+## Position
+1. Position : **relative**  
+  When you set position: relative; on an element, it remains within the normal document flow, and its position is determined relative to where it would have been if it were not positioned. In other words, it respects the space it would have occupied in the document flow.  
+  You can use the top, right, bottom, and left properties to offset the element from its normal position. These offsets are applied relative to the element's initial position. 
+
+2. Position : **absolute**  
+  When you set position: absolute; on an element, it is taken out of the normal document flow, and its position is determined relative to its nearest positioned ancestor (an ancestor with a position value other than static, which is the default).  
+  If there is no positioned ancestor, it is positioned relative to the initial containing block (usually the viewport).  
+
+Also, in relative there's no relevance with the parent container, but the absolute positioning depends on the parent, it will find the nearest ancester having a non static position and be absolute with respect to that, while the relative is just relative change with respect to the original position of the element in the original flow.  
+Having said that, two element might need to be in relative positioning to perform z axis operations of hiding behind each other.
+```css
+.z-10{
+  z-index: 10;
+  /* z axis defines where the object lies from our perspective as a viewer. 
+  The greater the z index the closer it is to the viewer 
+  Also, z-index relies on position relative to work.*/
+}
+```
+
+
+### Other commonly used properties :
+```CSS
+.no-underline{
+  text-decoration: none;
+  /* for no underline */
+}
+.font-bold{
+  font-weight: bold;
+  /* make sure you download the bold version of that font too otherwise on no find the bold version of that font, the system will give the bold of default font */
+}
+.uppercase{
+  text-transform: uppercase;
+}
+.width-full{
+  width: 100%;  /* Maintains the screen to width ratio of the element when resized */
+}
+.object-cover{
+  object-fit: cover; /* This maintains the aspect ratio of the element even when we resize the page */
+}
+.mx-auto{
+  margin-left:auto;
+  margin-right:auto;
+  /* One of the important methods while automatically gives certain margin to the element which centers it relative the to border or adjacent elements */
+}
+```
+>  span tag serves no purpose other than enclosing some element within them which help style that element or apply js to it. Same for nav, section, header tags (they just show which of the website this code is referring to).  
+
+
+## Media query
+Have to include this meta tag in head to let system adjust to different display sizes implemented using media query :  
+`<meta name="viewport" content="width=device-width, initial-scale=1">`  
+```css
+@media (min-width:600px){
+  .bg-blue{
+    background-color: blue;
+  }
+}
+/* This is how we used media query. And in this example the system will set the background color (of an element containing bg-blue class) as blue when the width of window exceeds 600px */
+```
+> Big thing to note here is, whenever we include both class and style attribute in a tag, the style attribute will override all the properties set by classes. So we have to keep conflicting properties in mind whenever we have both these attributes in use.
+
+# Tailwind CSS
+(Continuing in the same project)
