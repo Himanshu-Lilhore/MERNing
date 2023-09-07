@@ -337,4 +337,18 @@ Have to include this meta tag in head to let system adjust to different display 
 - Those classes follow atomic approach i.e. every class only have one property and that class' name represent that property.
 - Tailwind provides us with thousands of all commonly used classes, which helps write clean code and also reduces a lot of manual labour of creating lots of CSS classes. 
 - Also, Tailwind provides us classes with media queries too which help us write programs which can adjust with the display size.
+- Tailwind follows a certain naming convension for class names which is very intuitive. But also we don't need to remember name of each and every class to use it, we can search it [here](https://tailwindcss.com/docs/display).
+- You can free find icons (by tailwind makers) to include in your project [here](https://heroicons.com).
+- To start using Tailwind simply just put this tag in html head
+`<script src="https://cdn.tailwindcss.com"></script>`
 
+```css
+/* Here is an example to see how tailwind helps */
+.block{
+  display: block;
+}
+<div class="block">... </div>
+
+/* Instead of making that block class and then using it, we can directly use such simple classes in tailwind.
+Because classes like these are already provided */
+```
