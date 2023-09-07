@@ -332,3 +332,9 @@ Have to include this meta tag in head to let system adjust to different display 
 
 # Tailwind CSS
 (Continuing in the same project)
+
+- Tailwind is a library of huge number of CSS classes. 
+- Those classes follow atomic approach i.e. every class only have one property and that class' name represent that property.
+- Tailwind provides us with thousands of all commonly used classes, which helps write clean code and also reduces a lot of manual labour of creating lots of CSS classes. 
+- Also, Tailwind provides us classes with media queries too which help us write programs which can adjust with the display size.
+
