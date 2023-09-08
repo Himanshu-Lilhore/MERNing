@@ -233,6 +233,11 @@ Read more here : [CSS tricks](https://css-tricks.com/snippets/css/a-guide-to-fle
   align-items: center;
   /* another sub-flex property, it's used to align all the children vertically with respect to the parent container */
 }
+.flex-wrap{
+  flex-wrap : wrap;
+  /* another sub-flex property, it helps when we reduce the size of screen and child element
+     need to drop down to next line in order to not have an horizontal scroll view */
+}
 ```
 
 ## Margin & Padding 
