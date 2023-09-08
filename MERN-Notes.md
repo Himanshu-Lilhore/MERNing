@@ -340,7 +340,7 @@ Have to include this meta tag in head to let system adjust to different display 
 - Tailwind follows a certain naming convension for class names which is very intuitive. But also we don't need to remember name of each and every class to use it, we can search it [here](https://tailwindcss.com/docs/display).
 - You can free find icons (by tailwind makers) to include in your project [here](https://heroicons.com).
 - To start using Tailwind simply just put this tag in html head
-`<script src="https://cdn.tailwindcss.com"></script>`
+`<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">`
 
 ```css
 /* Here is an example to see how tailwind helps */
