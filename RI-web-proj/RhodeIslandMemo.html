@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Rhode Island Memo</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .card {
+            border: 2px solid black;
+            background : #bbbbbb;
+			min-width : 225px;
+			max-width : 500px;
+			height : 175px;
+			display : inline-block;
+			overflow : auto;
+			border-radius : 0.5rem;
+			margin: 5px;
+        }
+        .cardTitle {
+            font-weight: 750;
+            font-size: 1rem;
+			display : block;
+            justify-content: left;
+			padding: 3px 5px ;
+        }
+		.cardContent{
+			padding: 3px 5px ;
+			display : block;
+		}
+		.cardLine {
+			border-top: 2px solid black;
+			width: 100%;
+		}
+		a{
+			color : navy;
+			font-weight : 600;
+		}
+		.flex-container {
+            display: flex;
+            justify-content: left;
+            flex-wrap: wrap;
+        }
+		.ip-field-props{
+			min-width : 250px;
+			border-radius : 0.25rem;
+			padding : 2px 5px;
+		}
+		.sep-color{
+			background-color: purple;
+		}
+		.bgt{
+			background-color: transparent;
+		}
+		
+    </style>
+</head>
+
+
+<body bgcolor='grey'>
+
+<div class='absolute w-full h-full z-0'>
+	<video class='w-full h-full object-cover hidden' loop="loop" autoplay="autoplay" muted="muted" src="./bg-vid.mp4" > </video>
+	<img class='object-cover hidden' src='./bg-img.jpg'></img>
+</div>
+
+
+<header class="relative flex justify-between items-center px-6 mb-3 text-blue-300 w-full z-10 bg-black ">
+	<div class="relative flex justify-center">
+		<span class="text-3xl font-bold py-3">
+			Rhode Island Memo
+		</span>
+	</div>
+	
+	<div class='relative flex justify-between items-center'>
+		<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+		  <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+		</svg>
+		implement themes
+		<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+		  <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+		</svg>
+		
+
+		<a class="border-solid bg-blue-300 rounded-full px-2 py-1 ml-4" href="#createCard">
+			Create Card
+		</a>
+	</div>
+</header>
+
+
+<section class='relative my-3  z-10'>
+	<div id="notes" class="flex-container items-center border-none w-full h-auto bg-transparent m-0 px-5">
+		<div class='card'>
+			<span class='cardTitle'>Automation Feasibility</span>
+			<div class='cardLine'></div>
+			<span class='cardContent'>
+				non-feasible - will go to non-feasible manual (NFM)
+				<br>
+				feasible - will go to Manual (MAN)
+				<br>
+				only if Vamsi/Gaurav has asked to upload it under automation - then do so
+				
+			</span>
+		</div>
+
+		<div class='card'>
+			<span class='cardTitle'>Mobile</span>
+			<div class='cardLine'></div>
+			<span class='cardContent'>
+				To raise a problem ticket for mobile PT click 
+				<a
+				href="https://deloitteus.service-now.com/sp?id=sc_cat_item&sys_id=b1fc31234fbb5bc433c77bcd0210c72a&business_service_sys_id=b8e9b0914ffb170433c77bcd0210c79f"
+				target="_blank">
+					here
+				</a>
+			</span>
+		</div>
+		
+		<div class='card'>
+			<span class='cardTitle'>test</span>
+			<div class='cardLine'></div>
+			<span class='cardContent'>one</span>
+		</div>
+		
+		<div class='card'>
+			<span class='cardTitle'>test</span>
+			<div class='cardLine'></div>
+			<span class='cardContent'>two</span>
+		</div>
+		
+		<div class='card'>
+			<span class='cardTitle'>test</span>
+			<div class='cardLine'></div>
+			<span class='cardContent'>three</span>
+		</div>
+	</div>
+</section>
+
+
+
+<!-- <div class='w-full h-1 px-2 sep-color my-3'></div> -->
+
+
+<section id='createCard' class='px-5 my-3 z-10 relative'>
+	<div class='card' style='width:500px; height:auto;'>
+		<div class='p-5 bg-gradient-to-r from-purple-100 to-purple-600'>
+			<div class='flex justify-between p-3'>
+				<label for='createTitle'>Title</label>
+				<input id='createTitle' placeholder='Title here...' class='ip-field-props' required>
+			</div>
+			
+			<div class='flex justify-between p-3'>
+				<label for='createContent'>Content</label>
+				<textarea id='createContent' placeholder='Content here...' class='ip-field-props'></textarea>
+			</div>
+			
+			<div class='flex justify-center p-3'>
+				<button id='createBtn' class='rounded-full border-black border-2 px-3 py-1 bg-yellow-100 font-bold justify-center'>
+					Create
+				</button>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+
+<footer class='flex text-sm bg-black text-white w-full items-center p-12 mt-3 z-10' style='min-height:120px;'>
+	<div class='ml-auto flex justify-center items-center'>
+		<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+		  <path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
+		</svg>
+		<span class='p-2 text'>
+			Himanshu Lilhore
+		</span>
+	</div>
+</footer>
+
+
+<script>
+	let notesContainer = document.querySelector("#notes");
+	
+	let titleField = document.querySelector('#createTitle');
+	let contentField = document.querySelector('#createContent');
+	let createBtn = document.querySelector('#createBtn');
+	
+	createBtn.addEventListener('click', () => {
+		let titleEle = document.createElement('span');
+		let lineEle = document.createElement('div');
+		let contentEle = document.createElement('span');
+		let cardEle = document.createElement('div');
+		
+		let titleInput = titleField.value;
+		let contentInput = contentField.value;
+		
+		if(titleInput !== '')
+		{
+			titleEle.textContent = titleInput;
+			contentEle.textContent = contentInput;
+			
+			titleEle.classList.add('cardTitle');
+			contentEle.classList.add('cardContent');
+			lineEle.classList.add('cardLine');
+			cardEle.classList.add('card');
+			
+			cardEle.appendChild(titleEle);
+			cardEle.appendChild(lineEle);
+			cardEle.appendChild(contentEle);
+			
+			notesContainer.appendChild(cardEle);
+			
+			titleField.value = '';
+			contentField.value = '';
+			
+			titleField.classList.remove('border-red-500', 'border-2');
+		}
+		else
+		{
+			titleField.classList.add('border-red-500', 'border-2');
+		}
+	})
+</script>
+
+</body>
+</html>

@@ -335,6 +335,16 @@ Have to include this meta tag in head to let system adjust to different display 
 ```
 > Big thing to note here is, whenever we include both class and style attribute in a tag, the style attribute will override all the properties set by classes. So we have to keep conflicting properties in mind whenever we have both these attributes in use.
 
+## CSS variable
+```css
+.parent {
+	--myVariable: 20px; /* Define a CSS variable */
+}
+
+.child {
+	padding: var(--myVariable);  /* Use the variable */
+}
+```
 # Tailwind CSS
 (Continuing in the same project)
 
