@@ -29,7 +29,7 @@
 		}
 		.cardLine {
 			border-top: 2px solid black;
-			width: 100%;
+			width: auto;
 		}
 		a{
 			color : navy;
@@ -64,6 +64,7 @@
 </div>
 
 
+
 <header class="relative flex justify-between items-center px-6 mb-3 text-blue-300 w-full z-10 bg-black ">
 	<div class="relative flex justify-center">
 		<span class="text-3xl font-bold py-3">
@@ -86,6 +87,7 @@
 		</a>
 	</div>
 </header>
+
 
 
 <section class='relative my-3  z-10'>
@@ -138,8 +140,6 @@
 
 
 
-<!-- <div class='w-full h-1 px-2 sep-color my-3'></div> -->
-
 
 <section id='createCard' class='px-5 my-3 z-10 relative'>
 	<div class='card' style='width:500px; height:auto;'>
@@ -177,49 +177,11 @@
 </footer>
 
 
-<script>
-	let notesContainer = document.querySelector("#notes");
-	
-	let titleField = document.querySelector('#createTitle');
-	let contentField = document.querySelector('#createContent');
-	let createBtn = document.querySelector('#createBtn');
-	
-	createBtn.addEventListener('click', () => {
-		let titleEle = document.createElement('span');
-		let lineEle = document.createElement('div');
-		let contentEle = document.createElement('span');
-		let cardEle = document.createElement('div');
-		
-		let titleInput = titleField.value;
-		let contentInput = contentField.value;
-		
-		if(titleInput !== '')
-		{
-			titleEle.textContent = titleInput;
-			contentEle.textContent = contentInput;
-			
-			titleEle.classList.add('cardTitle');
-			contentEle.classList.add('cardContent');
-			lineEle.classList.add('cardLine');
-			cardEle.classList.add('card');
-			
-			cardEle.appendChild(titleEle);
-			cardEle.appendChild(lineEle);
-			cardEle.appendChild(contentEle);
-			
-			notesContainer.appendChild(cardEle);
-			
-			titleField.value = '';
-			contentField.value = '';
-			
-			titleField.classList.remove('border-red-500', 'border-2');
-		}
-		else
-		{
-			titleField.classList.add('border-red-500', 'border-2');
-		}
-	})
-</script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.6.1/sql-wasm.js"></script> -->
+<!-- <script src="https://raw.githubusercontent.com/sql-js/sql.js/gh-pages/dist/sql-wasm.js" defer></script> -->
+<!-- <script src="sql-wasm.js" defer></script> -->
+<script src="script.js" defer></script>
+
 
 </body>
 </html>

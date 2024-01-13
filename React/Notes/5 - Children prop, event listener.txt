@@ -1,0 +1,52 @@
+> Component folder structure : 
+
+Instead of keeping all the components in one file, split them up, and also keep their styling (CSS) with them in that same components folder.
+Or even better, inside components folder, make a seperate folder for each component and keep all the files related to that component in that folder.
+
+
+
+> Children Prop : (ss)
+
+When we have a component like: <myComp> SomeText </myComp>
+Here the text or markup code present between the opening and closing tag of the component is called children prop.
+When the markup code passes props object to the function it can referred using props.children
+
+
+
+> Event listener :
+
+When we want to perform an operation on button click we find the button element in DOM and use eventListeners in JS to perform operations on button click, but in React we don't interact with DOM directly, instead we let React do it for us, so here we do with props like onClick, onDoubleClick etc. (eg ss). Only in-built html components have these pre-defined props by react.
+Now, since we give a fuction to these in-built props to execute, but that function is not limit to without the definition of the component, we can get outside functions (which are defined out of the scope of this component) to execute on actions by passing those functions to a prop while calling this component (eg ss).
+
+
+> Managing State & using hooks: 
+By default, react component functions execute only once, you have to "tell" react if a component should be executed again. (ss)
+state is like a variable and hooks are like functions (which we import from 'React'.
+Rules for using (calling) hook (ss)
+for eg - useState hook used in this example, while calling is we are giving it an initial value, it returns an array of 2 things, first is the state (ig?) and second is a function which we can use to set the value of that state. here we destructed that array while calling it, and now whenever that (setState) function is used the whole component (inside which the hook is called) is executed (rebuild?/rendered?) again.
+Also, when a component is rebuild again on call of setState function while using hooks, internally that component is rebuild with same state value which was given while initializing and then it is replaced with newer value.
+
+
+>Rendering content conditinally : 
+Based on some condition if we want to render some or the other element on the screen we can use Ternary operator in React (ss) or && operator (ss) or we can store all those elements in variable and write those in ternary operator for better code (ss).
+
+
+> if you want to set a class to an inbuilt component, react provides a prop called className when can be filled by a class name you have made in css for styling that component.
+
+
+> Outputting list data dynamically :
+If we have a list which contains data/info/prop which will be used to present a list of similar type of components, then instead of manually writing that compopnent and it's properties that many number of times (ss) what we do is use map functionality to loop over each element of that list and make a presentable component out of that info dynamically (ss), now here in this ss that map will output a list of components so when we give a list of components to react inside a parent html element, react places all those components inside that parent element internally.
+
+
+> go through "58. Module Summary" chapter for brief of all the topics above.
+
+
+> when returning jsx code, we have to wrap it inside a single parent if the returning jsx code has multiple children elements (ss).
+But in doing that, wherever that returned code lands, it creates an extra div, which could be cluttering, so to avoid that we can wrap elements being returned in something called as Fragment (ss), and this Fragment parent disappears wherever that returned code lands unlike those divs. And in newer React version we don't even need to import Fragment, instead we can simply wrap the returning element in <>  </> (empty tag) as a parent and it works same as Fragment.
+
+
+> When to split components into different files :
+when we use hooks inside a component to track the updating states of that compopnent, if that component is huge containing a lot of elements inside it which may update a huge chunk of page on a single state change, that's we split the components to avoid reloading huge components all at once, for better efficiency.
+
+
+
