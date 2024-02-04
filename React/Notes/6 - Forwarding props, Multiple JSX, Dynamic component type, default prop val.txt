@@ -1,0 +1,42 @@
+> Forwarding props to wrapped elements :
+Suppose we are trying to create a custom component named Section (not section with small s, which is already present in html). And while using the component we give it some props like <Section id="mySec">. and if our component returns a section element (ss) all those properties we mentioned while using that component won't be forwarded to the section element being returned unless we explicitely forward it there by using ...props to get all the properties incoming to the innner elements.
+
+
+>Multiple JSX slots :
+We have this special prop 'children' which comes handy while passing a jsx code to the inner elements of that component. But what if needed not just that jsx code which is enclosed by our component but also some other jsx code which is interacting (or not) with the children's jsx code, so to have option to transfer more jsx code from component to the function we can pass those secondary jsx code by just passing them in a prop for that component. eg - 
+<MyComp buttons={
+	<>
+	<button>Next</button>
+	<button>Cancel</button>
+	</>
+}>
+	<textarea>{content}</textarea>
+</MyComp>
+Here as we can see we passed some jsx component in buttons prop. Also, while passing the jsx in props we need to enclose all elements in one single element (as we did here in fragment) as we usually do while returning element from component funtions too.(ss)
+
+
+> Setting component types dynamically :
+As we know we are able to set props and children components as we wish, but we can also define what type on container elements we want to use as inner elements inside a component by pass a prop in that component. eg -
+<MyComp Container="menu">
+</MyComp>
+
+export default function MyComp({children, Container}){
+	//let Container = container;
+	return (
+		<>
+			<Container>{children}</Container>
+		</>
+	)
+}
+Now important thing to note here is Container has a capital C, which tells react the it is not a existing element/identifier and it has to get the value of it from Container. If we decide to write small c for container, the we'll have to assign it to a variable variable starting with a captial C (see the commented line)(variable name doesn't have to be the same)
+
+
+> Setting default prop values :
+As the name suggests we can set up default values for the props being received by the component function. eg-
+export default function MyComp({children, Container='menu'}){
+	return (
+		<>
+			<Container>{children}</Container>
+		</>
+	)
+}
