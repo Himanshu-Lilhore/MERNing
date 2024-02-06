@@ -6,18 +6,26 @@ const initialGameboard = [
     [null, null, null]
 ]
 
-export default function Gameboard({onSelSq, activePlayer}){
-    const[gameboard, setGameboard] = useState(initialGameboard);
+export default function Gameboard({onSelSq, theTurn}){
+    // const[gameboard, setGameboard] = useState(initialGameboard);
 
-    function handleSelectedSq(rowIndex, colIndex){
-        setGameboard((prevBoard) => {
-            let updatedGameboard = [...prevBoard.map(innerArr => [...innerArr])];
-            updatedGameboard[rowIndex][colIndex] = activePlayer;
-            return updatedGameboard;
-        })
+    // function handleSelectedSq(rowIndex, colIndex){
+    //     setGameboard((prevBoard) => {
+    //         let updatedGameboard = [...prevBoard.map(innerArr => [...innerArr])];
+    //         updatedGameboard[rowIndex][colIndex] = activePlayer;
+    //         return updatedGameboard;
+    //     })
+    // }
 
-        onSelSq();
+    let gameboard = initialGameboard
+    if(theTurn.length != 0)
+    {
+        console.log(theTurn)
+        const {square, player} = theTurn[0]
+        const {row, col} = square
+        gameboard[row][col] = player;
     }
+
 
     return (
         <ol id="game-board">
@@ -26,7 +34,7 @@ export default function Gameboard({onSelSq, activePlayer}){
                     <ol>
                         {row.map((playerSymbol,colIndex) => (
                             <li key={colIndex}>
-                                <button onClick={() => {handleSelectedSq(rowIndex, colIndex)}}>{playerSymbol}</button>
+                                <button onClick={() => {onSelSq(rowIndex, colIndex)}}>{playerSymbol}</button>
                             </li>
                         ))}
                     </ol>
