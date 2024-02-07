@@ -6,7 +6,7 @@ const initialGameboard = [
     [null, null, null]
 ]
 
-export default function Gameboard({onSelSq, theTurn}){
+export default function Gameboard({onSelSq, theTurns}){
     // const[gameboard, setGameboard] = useState(initialGameboard);
 
     // function handleSelectedSq(rowIndex, colIndex){
@@ -18,10 +18,10 @@ export default function Gameboard({onSelSq, theTurn}){
     // }
 
     let gameboard = initialGameboard
-    if(theTurn.length != 0)
+    if(theTurns.length != 0)
     {
-        console.log(theTurn)
-        const {square, player} = theTurn[0]
+        console.log(theTurns)
+        const {square, player} = theTurns[0]
         const {row, col} = square
         gameboard[row][col] = player;
     }

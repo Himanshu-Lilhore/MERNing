@@ -1,13 +1,26 @@
 import Player from './components/Player.jsx';
 import Gameboard from './components/Gameboard.jsx';
 import {useState} from 'react';
+import Log from './components/Log.jsx';
+
+function calcActive(myTurns){
+  let activeRN = 'X'
+
+  if(myTurns.length != 0 && myTurns.player === 'X'){
+    activeRN = 'O'
+  }
+
+  return activeRN;
+
+}
 
 function App() {
-  const[active, setActive] = useState("X");
   const[turns, setTurns] = useState([]);
+  // const[active, setActive] = useState("X");
+  let active = calcActive(turns);
 
   function handleSqClick(rowIndex, colIndex){
-    setActive((currActive) => currActive ==="X" ? "O" : "X" );
+    // setActive((currActive) => currActive ==="X" ? "O" : "X" );
 
     setTurns(prevTurns => {
       let curPlayer = 'X';
@@ -27,8 +40,9 @@ function App() {
           <Player iniName="Himanshu" symbol='X' isActive={active==='X'}/>
           <Player iniName="Hemant" symbol='O' isActive={active==='O'}/>
         </ol>
-          <Gameboard onSelSq={handleSqClick} theTurn = {turns}/>
+        <Gameboard onSelSq={handleSqClick} theTurns = {turns}/>
       </div>
+      <Log theTurns = {turns}/>
     </main>
   )
 }
