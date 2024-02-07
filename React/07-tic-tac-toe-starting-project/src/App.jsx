@@ -2,11 +2,20 @@ import Player from './components/Player.jsx';
 import Gameboard from './components/Gameboard.jsx';
 import {useState} from 'react';
 import Log from './components/Log.jsx';
+import {WINNING_COMBINATIONS} from './winning-combinations.js'
+import GameOver from './components/GameOver.jsx';
+
+const initialGameboard = [
+  [null, null, null],
+  [null, null, null],
+  [null, null, null]
+]
+
 
 function calcActive(myTurns){
   let activeRN = 'X'
 
-  if(myTurns.length != 0 && myTurns.player === 'X'){
+  if(myTurns.length !== 0 && myTurns[0].player === 'X'){
     activeRN = 'O'
   }
 
@@ -14,10 +23,41 @@ function calcActive(myTurns){
 
 }
 
+
 function App() {
   const[turns, setTurns] = useState([]);
   // const[active, setActive] = useState("X");
   let active = calcActive(turns);
+  let winner
+  let drawn = false
+  let gameboard =  [...initialGameboard.map(arr => [...arr])]
+  
+  function handleRestart(){
+    setTurns([])
+  }
+  
+
+  for(const turn of turns){
+    const {square, player} = turn
+    const {row, col} = square
+    gameboard[row][col] = player;
+  }
+  
+  console.log(turns[0])
+
+  for(const combination of WINNING_COMBINATIONS){
+    let firstSq = gameboard[combination[0].row][combination[0].column]
+    let secondSq = gameboard[combination[1].row][combination[1].column]
+    let thridSq = gameboard[combination[2].row][combination[2].column]
+
+    if(firstSq &&
+      firstSq === secondSq &&
+      firstSq === thridSq){
+        winner = firstSq;
+    }
+  }
+
+  if(!winner && turns.length === 9) drawn = true
 
   function handleSqClick(rowIndex, colIndex){
     // setActive((currActive) => currActive ==="X" ? "O" : "X" );
@@ -40,7 +80,8 @@ function App() {
           <Player iniName="Himanshu" symbol='X' isActive={active==='X'}/>
           <Player iniName="Hemant" symbol='O' isActive={active==='O'}/>
         </ol>
-        <Gameboard onSelSq={handleSqClick} theTurns = {turns}/>
+        {(winner || drawn) && <GameOver winner={winner} handleRe={handleRestart}/>}
+        <Gameboard onSelSq={handleSqClick} board={gameboard}/>
       </div>
       <Log theTurns = {turns}/>
     </main>
