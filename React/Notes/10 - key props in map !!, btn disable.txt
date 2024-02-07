@@ -1,3 +1,4 @@
+> Key prop in map :
 In React, each element within an array that is rendered with a `map()` function should have a unique `key` prop. The purpose of the `key` prop is to help React identify which items have changed, are added, or are removed. Having a unique `key` for each element allows React to efficiently update the UI without unnecessarily re-rendering or reordering elements.
 
 Here's why it's important to have different keys for each element being rendered:
@@ -18,3 +19,8 @@ Here's why it's important to have different keys for each element being rendered
    - Using unique keys ensures that each rendered element has a unique identifier, which is important for accessibility and maintaining a proper semantic structure in the HTML document.
 
 In summary, having different keys for each element being rendered is crucial for React's reconciliation algorithm to work efficiently, optimize performance, and ensure proper handling of component state and DOM updates.
+
+
+> Disabling button conditionally : 
+React gives us a disabled prop through which we can disable clicking an element alltogether or conditionally.
+[In React, the disabled prop is commonly used to disable interaction with a component, such as buttons or form inputs. When disabled is set to true, the component becomes non-interactive, preventing users from interacting with it. This is often used to convey that certain actions are unavailable in a particular state, providing visual feedback to users and preventing accidental interactions.]

@@ -34,7 +34,7 @@ export default function Gameboard({onSelSq, theTurns}){
                     <ol>
                         {row.map((playerSymbol,colIndex) => (
                             <li key={colIndex}>
-                                <button onClick={() => {onSelSq(rowIndex, colIndex)}}>{playerSymbol}</button>
+                                <button onClick={() => {onSelSq(rowIndex, colIndex)}} disabled={playerSymbol !== null}>{playerSymbol}</button>
                             </li>
                         ))}
                     </ol>
