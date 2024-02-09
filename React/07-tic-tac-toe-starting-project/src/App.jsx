@@ -26,6 +26,10 @@ function calcActive(myTurns){
 
 function App() {
   const[turns, setTurns] = useState([]);
+  const[players, setPlayers] = useState({
+    'X': 'Himanshu',
+    'O': 'Hemant'
+  })
   // const[active, setActive] = useState("X");
   let active = calcActive(turns);
   let winner
@@ -36,6 +40,15 @@ function App() {
     setTurns([])
   }
   
+  function handlePlayerNameChange(symbol, newName){
+    setPlayers(prevPlayers => {
+      return({
+        ...prevPlayers,
+        [symbol]:newName    // this syntax is used when for key name we have a variable
+      });
+    }
+    )
+  }
 
   for(const turn of turns){
     const {square, player} = turn
@@ -53,7 +66,7 @@ function App() {
     if(firstSq &&
       firstSq === secondSq &&
       firstSq === thridSq){
-        winner = firstSq;
+        winner = players[firstSq];
     }
   }
 
@@ -77,8 +90,8 @@ function App() {
     <main>
       <div id="game-container">
         <ol id='players' className='highlight-player'>
-          <Player iniName="Himanshu" symbol='X' isActive={active==='X'}/>
-          <Player iniName="Hemant" symbol='O' isActive={active==='O'}/>
+          <Player iniName={players['X']} symbol='X' isActive={active==='X'} onNameCh={handlePlayerNameChange}/>
+          <Player iniName={players['O']} symbol='O' isActive={active==='O'} onNameCh={handlePlayerNameChange} />
         </ol>
         {(winner || drawn) && <GameOver winner={winner} handleRe={handleRestart}/>}
         <Gameboard onSelSq={handleSqClick} board={gameboard}/>
