@@ -29,14 +29,17 @@ function App() {
       </div>
 
       <div id='user-input'>
-        <Input keyName='initial' valChange={handleValChange}>Initial Investment</Input>
-        <Input keyName='annual' valChange={handleValChange}>Annual Investment</Input>
-        <Input keyName='expected' valChange={handleValChange}>Expected Return</Input>
-        <Input keyName='duration' valChange={handleValChange}>Duration</Input>
+        <Input keyName='initial' valChange={handleValChange} value={investment}>Initial Investment</Input>
+        <Input keyName='annual' valChange={handleValChange} value={investment}>Annual Investment</Input>
+        <Input keyName='expected' valChange={handleValChange} value={investment}>Expected Return</Input>
+        <Input keyName='duration' valChange={handleValChange} value={investment}>Duration</Input>
       </div>
 
       <table id='result'>
-        <Result investObj={investment} />
+        {investment.duration > 0 ? 
+          <Result investObj={investment} /> :
+          <p className='center'>Please enter a valid duration</p>
+        }
       </table>
     </div>
   );

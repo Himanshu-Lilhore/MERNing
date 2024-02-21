@@ -1,4 +1,5 @@
 export default function Input({children, ...props}){
+
     function textChange(event){
         props.valChange(props.keyName, event.target.value)
     }
@@ -6,7 +7,7 @@ export default function Input({children, ...props}){
     return(
         <>
             <label>{children}</label>
-            <input type='number' required className='input-group' onChange={textChange} />
+            <input type='number' required className='input-group' value={props.value[props.keyName]} onChange={textChange} />
         </>
     );
 }
