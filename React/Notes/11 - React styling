@@ -1,0 +1,36 @@
+> Vanilla styling is not scoped :
+If we split the CSS styling into multiple, seperate styling file for each component, that works well for writing understandable code, but we shold know that splitting CSS like that doesn't scope that styling just to that component, it will still be global, and that is one disadvantage of using vanilla CSS.
+
+
+> Inline styling in React (Not recommended) :
+We do inline styling in Javascript by giving style prop a string containing all the styling we need directly. But here in Reach instead of passing a string of styles we give a object of key-value (style-value) to the style prop. e.g. -
+export default function Header() {
+  return (
+    <header>
+      <img src={logo} alt="A canvas" />
+      <h1>ReactArt</h1>
+      <p style={{
+        color : 'red',
+        textAlign : 'left'
+      }}>A community of artists and art-lovers.</p>
+    </header>
+  );
+}
+
+
+> Conditional/Dynamic inline styling :
+export default function Email({emailIsValid}) {
+    return (
+        <input style = {{
+            backgroundColor : emailIsValid ? "green" : "red"
+        }} />
+    )
+}
+
+
+> Dynamically managing classes (inline) :
+let isValidEmail = true
+<label className={isValidEmail ? 'invalid' : undefined}>email</label>
+<label className={
+    `bold ${isValidEmail ? 'invalid' : ''}`
+}>email</label>
