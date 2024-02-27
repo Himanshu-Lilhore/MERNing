@@ -1,0 +1,3 @@
+For installing Tailwind in your project, go to Tailwind's website, and for Vite (if your local project is built using Vite), go through installation instructions for Vite first.
+
+And as the setup for tailwind is done, you can start using it as usual, add the tailwind class names to the className prop of the elements/components and see the magic.

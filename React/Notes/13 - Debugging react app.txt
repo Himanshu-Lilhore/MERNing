@@ -1,0 +1,10 @@
+> Breakpoints in browser :
+While your reat app is running in the browser, to inpect > sources tab > got to the file in which you feel issue might be there > go to some line, click line number to add breakpoint > refresh the page/ or change something so that that thing updates, it will stop execution at that line, and you can hover over variables around to see their value, can use arrows to move forward with execution etc.
+
+
+> Strict mode in React
+
+> React developer tools (chrome extension) :
+This extension introduces two new tabs in inspect section. 
+1. Profile (performance related) 
+2. Components (shows components tree of the project, can play with component values, read all about a component here)

@@ -1,0 +1,86 @@
+> Vanilla styling is not scoped :
+If we split the CSS styling into multiple, seperate styling file for each component, that works well for writing understandable code, but we shold know that splitting CSS like that doesn't scope that styling just to that component, it will still be global, and that is one disadvantage of using vanilla CSS.
+
+
+> Inline styling in React (Not recommended) :
+We do inline styling in Javascript by giving style prop a string containing all the styling we need directly. But here in Reach instead of passing a string of styles we give a object of key-value (style-value) to the style prop. e.g. -
+export default function Header() {
+  return (
+    <header>
+      <img src={logo} alt="A canvas" />
+      <h1>ReactArt</h1>
+      <p style={{
+        color : 'red',
+        textAlign : 'left'
+      }}>A community of artists and art-lovers.</p>
+    </header>
+  );
+}
+
+
+> Conditional/Dynamic inline styling :
+export default function Email({emailIsValid}) {
+    return (
+        <input style = {{
+            backgroundColor : emailIsValid ? "green" : "red"
+        }} />
+    )
+}
+
+
+> Dynamically managing classes (inline) :
+let isValidEmail = true
+<label className={isValidEmail ? 'invalid' : undefined}>email</label>
+<label className={
+    `bold ${isValidEmail ? 'invalid' : ''}`
+}>email</label>
+
+
+> Scoping CSS classes using CSS modules :
+
+import myClasses from './Header.modules.css';
+export default function Header(){
+	return(
+		<header>
+			<p className = {myClasses.paragraph}> Dummy paragraph </p>
+		</header>
+	);
+}
+We created this Header component and we kept the CSS classes associated with this in a Header.css file (initially), but this was just serving an aesthetic purpose, those classes could be accessed by other files too, so to scope classes in React we can use the concept of css modules, firsly we have to rename Header.css to Header.modules.css the module word in the name tell React about scoping all the classes present in that file to the Header component. And to use them in Header we import it as shown above and use it with dot opeartor to get different classes. When the React system will build the page dynamically it will create a new css class (with same content inside) and pass that new and unique class name to our p tag in Header so that that unique class is only associated with that component, and even if elements outside of this Header might have used that paragraph file it won't let them access it because it will have a dynamically generated unique name because of using CSS modules.
+
+
+> Styled components (Third-party package):
+ $ npm install styled-components
+It is a package which we install in our react project using above command. What it does is, with a container and css properties as input it gives us a component output which already has those styles applied, so that we can use that component without caring about it's styling. Internally react do all the work for us, make such component containing that input container element, make a css class for us with a unique name with all those input properties in it, apply that class to the container, and finally output the finished component for us, that we then can store in a variable [read more about that backtick syntax here (its is pure JS feature - tagged template) https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates]:
+import {styled} from 'styled-components';
+
+const MyStyledDivComp = styled.div`
+	display: flex;
+	margin: 1.5rem;
+`
+Now that component can be used like this :
+<MyStyledDivComp prop1='val1' prop2='val2'>
+	// things inside
+</MyStyledDivComp>
+And also, all the props you pass to this component will be passed to the internal Div element which makes it more convenient.
+But also when you want to avoid collision with that actual default prop of the internal container element instead of giving a random name to your prop you can just prefix it with a $ sign, so that it will mean the same to you but it just won't collide with fundamental props of that internal html element. e.g. : Assume you made a MyDiv component using styled components package, now since all the props will be passed as it is to internal div element & as we already have a fundamental prop named 'invalid' we can do it like this :
+<MyDiv $invalid={someVarDefiningValidity}>
+</MyDiv>
+
+
+> Dynamic & conditional styling with styled components :
+MyDiv = styled.div`
+	display: flex;
+	position: relative;
+	color: ${(props) => {props.currColor}};
+`
+<MyDiv currColor={color3}>
+</MyDiv>
+Here we can see, the css properties themselves are getting defined dynamically. The props object is automatically passed to the function (it could also be a variable, but if we have a function taking an argument, the props obj will automatically be passed to it).
+
+
+> Nested styling :
+Nested styling (styling for child element), media query (device dimention wise styling) & pseudo selectors (hover etc) are also there with styled components. It is so that when we need to include the styles of parent and its children elements and hover styles and media queries, we can pass it in all in that string while making the styled component (with some basic rules/notation) and it will automatically apply those styles appropriately.
+
+
+[116. Creating reusable components & component combinations] is also there, but enough of styling.
