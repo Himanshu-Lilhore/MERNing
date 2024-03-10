@@ -3,6 +3,6 @@ set /p commit_message="Enter commit message: "
 
 git add .
 git commit -m "%commit_message%"
-git push
-
+git push origin main
+git push origin-fork main
 pause
