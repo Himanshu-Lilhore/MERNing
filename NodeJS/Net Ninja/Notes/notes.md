@@ -405,5 +405,103 @@ server.listen(3000, 'localhost', () => {
 ```
 
 ## npm (Lesson - 5)
-[npmjs.com](npmjs.com)
-continue 5th video..
+Node Package Manager - [npmjs.com](npmjs.com)  
+- Essential tool for managing JavaScript packages, especially in Node.js environments.
+- Simplifies package installation, version control, and dependency management processes.
+- Enables seamless integration of third-party libraries and utilities into Node.js projects.
+- **npm init** : This command creates 'package.json' file for the project which contains some data and more importantly the info about third party npm packages installed in the project.
+- **npm install** : This command creates the node_modules folder for the project based on the package info present in the package.json file.  
+### Popular npm packages used :  
+- **Nodemon:**
+  1. Automates server restarts upon file changes, enhancing the development workflow.
+  2. Saves developers time and effort by eliminating the need for manual server restarts during development.
+
+- **Lodash:**
+  1. Offers a comprehensive set of utility functions for JavaScript development.
+  2. Enhances code readability and reduces development time by providing efficient solutions to common programming tasks.
+
+## Express Apps (Lesson - 6)
+Express in a node package which helps for better https servers. Not that https servers can to made and maintained well using raw nodejs itself, but express provides a better and a cleaner syntax of maintaining all the things associated with the server.  
+After installing expressing using 'npm install express' we can start using it.  
+Lets see and example where we convert the same server from earlier example to an express server.  
+#### Pure `Node server` :
+```javascript
+const http = require('http');
+const fs = require('fs');
+
+const server = http.createServer((req, res) => {
+	res.setHeader('Content-Type', 'text/html');
+
+	let path = './views/';
+	switch(req.url){
+		case '/':
+			path += 'index.html';
+			res.statusCode = 200;
+			break;
+		case '/about':
+			path += 'about.html';
+			res.statusCode = 200;
+			break;
+		case '/about-me':
+			res.statusCode = 301;
+			res.setHeader('Location', '/about');
+			res.end();
+			break;
+		default:
+			path += '404.html';
+			res.statusCode = 404;
+			break;
+	}
+
+	fs.readFile(path, (err, data) => {
+		if(err){
+			console.log(err);
+			res.end();
+		}
+		else{
+			res.end(data);
+		}
+	})
+});
+
+server.listen(3000, 'localhost', () => {
+	console.log('listening for requests on port 3000');
+});
+```
+#### `Express server` (same node server above converted) :
+```javascript
+const express = require('express');
+
+const app = express();  // express app (one instance)
+
+app.listen(3000);   // listening to requests at 3000 [localhost automatic]
+
+app.get('/', (req, res) => {
+	res.send('./views/index.html', {root : __dirname});
+	// automatically infers the type of response we are sending (so no need for setting content type in header as in node)  // and automatically infers status code.
+	// relative to __dirname in the position of that file, otherwise you can skip the second argument and write the absolute path there (wrt PC)
+	// or write __dirname + relpath
+
+	// res.send('<p>This is the homepage</p>'); 
+})
+
+app.get('/about', (req, res) => {
+	res.send('./views/about.html', {root : __dirname})
+})
+
+// redirect
+app.get('/about-me', (req, res) => {
+	res.redirect('/about')
+})
+
+// 404
+app.use((req, res) => {
+	res.sendFile('./views/404.html', {root : __dirname})
+    // use method helps create middleware (read later)
+    // in simple terms, here every case in which url didn't match in about get functions it will come here and that will make it default.
+    // Note - It is not a 'default' in node, its just that it is written at the bottom of all the other possible match cases, so it kind of becomes default since it comes at the end of all the other executions.
+})
+```
+
+## View Engines (Lesson - 7)
+start from the beginning of this.
