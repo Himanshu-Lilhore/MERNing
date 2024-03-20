@@ -301,17 +301,17 @@ server.listen(3000, 'localhost', () => {
 ```
 
 ### Status codes :
-100 range - informational responses
-200 range - success codes
-300 range - codes for redirects
-400 range - user of client error codes
-500 range - server error codes
+100 range - informational responses  
+200 range - success codes  
+300 range - codes for redirects  
+400 range - user of client error codes  
+500 range - server error codes  
 
-Commonly known :
-200 - OK
-301 - Resource moved
-404 - Not found
-500 - Internal server error
+Commonly known :  
+200 - OK  
+301 - Resource moved  
+404 - Not found  
+500 - Internal server error  
 ```javascript
 const http = require('http');
 const fs = require('fs');
