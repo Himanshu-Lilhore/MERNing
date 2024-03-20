@@ -178,4 +178,229 @@ Source : [Net Ninja - NodeJS crash course](https://youtube.com/playlist?list=PL4
         ```
 
 
-# continue from here [4th vid](https://www.youtube.com/watch?v=DQD00NAUPNk&list=PL4cUxeGkcC9jsz4LDYc6kv3ymONOKxwBU&index=4)
+## Requests & Responses (Lesson - 4)
+### Request object :
+Request object contains a large amount of data about the request being made to the server. For starters we can use few of its data like url to know current url being accessed/used.
+'''javascript
+const http = require('http');
+
+const server = http.createServer((req, res) => {
+	console.log(req.url, req.method);
+});
+
+server.listen(3000, 'localhost', () => {
+	console.log('listening for requests on port 3000');
+});
+'''
+
+### Response object :
+Response object is what we make and return to the browser/user post a request is made.
+Plain text response :
+'''javascript
+const http = require('http');
+
+const server = http.createServer((req, res) => {
+	console.log(req.url, req.method);
+
+	res.setHeader('Content-Type', 'text/plain');
+
+	res.write('Himanshu Lilhore');
+	res.end();
+});
+
+server.listen(3000, 'localhost', () => {
+	console.log('listening for requests on port 3000');
+});
+'''
+HTML response :
+'''javascript
+const http = require('http');
+
+const server = http.createServer((req, res) => {
+	console.log(req.url, req.method);
+
+	res.setHeader('Content-Type', 'text/html');
+
+	res.write('<p>My Paragraph 1</p>');
+	res.write('<p>My Paragraph 2</p>');
+	res.end();
+});
+
+server.listen(3000, 'localhost', () => {
+	console.log('listening for requests on port 3000');
+});
+'''
+Returning html page :
+'''javascript
+const http = require('http');
+const fs = require('fs');
+
+const server = http.createServer((req, res) => {
+	console.log(req.url, req.method);
+
+	res.setHeader('Content-Type', 'text/html');
+
+	fs.readFile('./index.html', (err, data) => {
+		if(err){
+			console.log(err);
+			res.end();
+		}
+		else{
+			res.write(data);
+			res.end();
+			// res.end(data);  // same as above 2 lines.
+		}
+	})
+});
+
+server.listen(3000, 'localhost', () => {
+	console.log('listening for requests on port 3000');
+});
+'''
+
+### Basic routing :
+For the different pages on our website, we are routing the user in a certain way, and if they try to access a url other then intended ones they are taken to 404 page. [in the main directory we have views folder and inside that we have all the page views]
+'''javascript
+const http = require('http');
+const fs = require('fs');
+
+const server = http.createServer((req, res) => {
+	console.log(req.url, req.method);
+
+	res.setHeader('Content-Type', 'text/html');
+
+	let path = './views/';
+	switch(req.url){
+		case '/':
+			path += 'index.html';
+			break;
+		case '/about':
+			path += 'about.html';
+			break;
+		default:
+			path += '404.html';
+			break;
+	}
+
+	fs.readFile(path, (err, data) => {
+		if(err){
+			console.log(err);
+			res.end();
+		}
+		else{
+			res.write(data);
+			res.end();
+			// res.end(data);  // same as above 2 lines.
+		}
+	})
+});
+
+server.listen(3000, 'localhost', () => {
+	console.log('listening for requests on port 3000');
+});
+'''
+
+### Status codes :
+100 range - informational responses
+200 range - success codes
+300 range - codes for redirects
+400 range - user of client error codes
+500 range - server error codes
+
+Commonly known :
+200 - OK
+301 - Resource moved
+404 - Not found
+500 - Internal server error
+'''javascript
+const http = require('http');
+const fs = require('fs');
+
+const server = http.createServer((req, res) => {
+	console.log(req.url, req.method);
+
+	res.setHeader('Content-Type', 'text/html');
+
+	let path = './views/';
+	switch(req.url){
+		case '/':
+			path += 'index.html';
+			res.statusCode = 200;
+			break;
+		case '/about':
+			path += 'about.html';
+			res.statusCode = 200;
+			break;
+		default:
+			path += '404.html';
+			res.statusCode = 404;
+			break;
+	}
+
+	fs.readFile(path, (err, data) => {
+		if(err){
+			console.log(err);
+			res.end();
+		}
+		else{
+			res.write(data);
+			res.end();
+			// res.end(data);  // same as above 2 lines.
+		}
+	})
+});
+
+server.listen(3000, 'localhost', () => {
+	console.log('listening for requests on port 3000');
+});
+'''
+### Redirects :
+Suppose earlier we had a url '/about-me', but later it was changed to '/about', now whoever comes to about-me should be redirected to about :
+'''javascript
+const http = require('http');
+const fs = require('fs');
+
+const server = http.createServer((req, res) => {
+	console.log(req.url, req.method);
+
+	res.setHeader('Content-Type', 'text/html');
+
+	let path = './views/';
+	switch(req.url){
+		case '/':
+			path += 'index.html';
+			res.statusCode = 200;
+			break;
+		case '/about':
+			path += 'about.html';
+			res.statusCode = 200;
+			break;
+		case '/about-me':
+			res.statusCode = 301;
+			res.setHeader('Location', '/about');
+			res.end();
+			break;
+		default:
+			path += '404.html';
+			res.statusCode = 404;
+			break;
+	}
+
+	fs.readFile(path, (err, data) => {
+		if(err){
+			console.log(err);
+			res.end();
+		}
+		else{
+			res.write(data);
+			res.end();
+			// res.end(data);  // same as above 2 lines.
+		}
+	})
+});
+
+server.listen(3000, 'localhost', () => {
+	console.log('listening for requests on port 3000');
+});
+'''
+
