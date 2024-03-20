@@ -181,7 +181,7 @@ Source : [Net Ninja - NodeJS crash course](https://youtube.com/playlist?list=PL4
 ## Requests & Responses (Lesson - 4)
 ### Request object :
 Request object contains a large amount of data about the request being made to the server. For starters we can use few of its data like url to know current url being accessed/used.
-'''javascript
+```javascript
 const http = require('http');
 
 const server = http.createServer((req, res) => {
@@ -191,12 +191,12 @@ const server = http.createServer((req, res) => {
 server.listen(3000, 'localhost', () => {
 	console.log('listening for requests on port 3000');
 });
-'''
+```
 
 ### Response object :
 Response object is what we make and return to the browser/user post a request is made.
 Plain text response :
-'''javascript
+```javascript
 const http = require('http');
 
 const server = http.createServer((req, res) => {
@@ -211,9 +211,9 @@ const server = http.createServer((req, res) => {
 server.listen(3000, 'localhost', () => {
 	console.log('listening for requests on port 3000');
 });
-'''
+```
 HTML response :
-'''javascript
+```javascript
 const http = require('http');
 
 const server = http.createServer((req, res) => {
@@ -229,9 +229,9 @@ const server = http.createServer((req, res) => {
 server.listen(3000, 'localhost', () => {
 	console.log('listening for requests on port 3000');
 });
-'''
+```
 Returning html page :
-'''javascript
+```javascript
 const http = require('http');
 const fs = require('fs');
 
@@ -256,11 +256,11 @@ const server = http.createServer((req, res) => {
 server.listen(3000, 'localhost', () => {
 	console.log('listening for requests on port 3000');
 });
-'''
+```
 
 ### Basic routing :
 For the different pages on our website, we are routing the user in a certain way, and if they try to access a url other then intended ones they are taken to 404 page. [in the main directory we have views folder and inside that we have all the page views]
-'''javascript
+```javascript
 const http = require('http');
 const fs = require('fs');
 
@@ -298,7 +298,7 @@ const server = http.createServer((req, res) => {
 server.listen(3000, 'localhost', () => {
 	console.log('listening for requests on port 3000');
 });
-'''
+```
 
 ### Status codes :
 100 range - informational responses
@@ -312,7 +312,7 @@ Commonly known :
 301 - Resource moved
 404 - Not found
 500 - Internal server error
-'''javascript
+```javascript
 const http = require('http');
 const fs = require('fs');
 
@@ -353,10 +353,10 @@ const server = http.createServer((req, res) => {
 server.listen(3000, 'localhost', () => {
 	console.log('listening for requests on port 3000');
 });
-'''
+```
 ### Redirects :
 Suppose earlier we had a url '/about-me', but later it was changed to '/about', now whoever comes to about-me should be redirected to about :
-'''javascript
+```javascript
 const http = require('http');
 const fs = require('fs');
 
@@ -402,5 +402,5 @@ const server = http.createServer((req, res) => {
 server.listen(3000, 'localhost', () => {
 	console.log('listening for requests on port 3000');
 });
-'''
+```
 
