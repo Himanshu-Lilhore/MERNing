@@ -504,4 +504,35 @@ app.use((req, res) => {
 ```
 
 ## View Engines (Lesson - 7)
-start from the beginning of this.
+### EJS view engine
+```shell
+npm install ejs
+```
+```javascript
+const express = require('express');
+
+const app = express();
+
+// register view engine
+app.set('view engine', 'ejs')
+// set method lets us change the settings for this app
+
+app.listen(3000);
+
+app.get('/', (req, res) => {
+	res.send('./views/index.html', {root : __dirname});
+})
+
+app.get('/about', (req, res) => {
+	res.send('./views/about.html', {root : __dirname})
+})
+
+app.get('/about-me', (req, res) => {
+	res.redirect('/about')
+})
+
+app.use((req, res) => {
+	res.sendFile('./views/404.html', {root : __dirname})
+})
+```
+> CONTINUE MAKING THE NOTES FOR THIS LESSON TILL THE END.
