@@ -504,7 +504,8 @@ app.use((req, res) => {
 ```
 
 ## View Engines (Lesson - 7)
-### EJS view engine
+### EJS (Embedded JavaScript templating) view engine
+Using a view engine like EJS in Express allows for the injection of dynamic data into HTML templates, making it easier to serve dynamic content to the browser.
 ```shell
 npm install ejs
 ```
@@ -535,4 +536,19 @@ app.use((req, res) => {
 	res.sendFile('./views/404.html', {root : __dirname})
 })
 ```
-> CONTINUE MAKING THE NOTES FOR THIS LESSON TILL THE END.
+
+## Highlights
+- EJS allows for the injection of dynamic data into HTML templates in Express.
+- View engines like Express Handlebars, Pug, and EJS can be used to create HTML templates with dynamic content.
+- EJS templates can be created in the default “views” folder or in a custom folder specified in the Express configuration.
+- The EJS templates can be rendered and served to the browser using the `response.render()` method in Express.
+- Dynamic content can be added to EJS templates using EJS tags and by passing data from the app to the view using the `response.render()` method.
+
+## Key Insights
+- Using a view engine like EJS allows for the separation of logic and presentation in web applications, making code more maintainable and easier to understand.
+- Express Handlebars, Pug, and EJS are popular view engines that provide similar functionality but have different syntax and features.
+- The choice of a view engine depends on personal preference and project requirements. EJS is a simple and feature-rich option.
+- By configuring the view engine in Express using `app.set('view engine', 'ejs')`, EJS becomes the default engine for rendering views.
+- EJS templates can be organized in the default “views” folder or in a custom folder specified using `app.set('views', 'custom-folder')`.
+- Dynamic content can be injected into EJS templates using EJS tags, allowing for the rendering of data from a database or user input.
+- The `response.render()` method in Express is used to render and serve EJS templates, with the option to pass data from the app to the view.
