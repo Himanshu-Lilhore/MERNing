@@ -1,0 +1,9 @@
+1. **useState**: It's a hook in React for managing state within functional components. When the state changes, React re-renders the component.
+
+2. **useEffect**: Another hook in React for managing side effects in functional components. Side effects are tasks like fetching data, subscribing to events, etc. `useEffect` lets you specify when these tasks should run and clean up after themselves.
+
+3. **Side Effects**: These are tasks that happen outside of the normal component rendering process, like data fetching or DOM manipulation.
+
+4. **Difference**: `useState` manages state and triggers re-renders, while `useEffect` manages side effects and specifies when they should run and clean up.
+
+In essence, `useState` is for managing component state, while `useEffect` is for managing tasks that happen outside the normal component rendering process. They work together to provide dynamic and interactive behavior in React functional components.

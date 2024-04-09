@@ -415,6 +415,7 @@ Node Package Manager - [npmjs.com](npmjs.com)
 - **Nodemon:**
   1. Automates server restarts upon file changes, enhancing the development workflow.
   2. Saves developers time and effort by eliminating the need for manual server restarts during development.
+  3. > $nodemon filename.js 
 
 - **Lodash:**
   1. Offers a comprehensive set of utility functions for JavaScript development.
@@ -537,18 +538,40 @@ app.use((req, res) => {
 })
 ```
 
-## Highlights
+## About EJS
 - EJS allows for the injection of dynamic data into HTML templates in Express.
 - View engines like Express Handlebars, Pug, and EJS can be used to create HTML templates with dynamic content.
 - EJS templates can be created in the default “views” folder or in a custom folder specified in the Express configuration.
 - The EJS templates can be rendered and served to the browser using the `response.render()` method in Express.
 - Dynamic content can be added to EJS templates using EJS tags and by passing data from the app to the view using the `response.render()` method.
 
-## Key Insights
-- Using a view engine like EJS allows for the separation of logic and presentation in web applications, making code more maintainable and easier to understand.
-- Express Handlebars, Pug, and EJS are popular view engines that provide similar functionality but have different syntax and features.
-- The choice of a view engine depends on personal preference and project requirements. EJS is a simple and feature-rich option.
-- By configuring the view engine in Express using `app.set('view engine', 'ejs')`, EJS becomes the default engine for rendering views.
-- EJS templates can be organized in the default “views” folder or in a custom folder specified using `app.set('views', 'custom-folder')`.
-- Dynamic content can be injected into EJS templates using EJS tags, allowing for the rendering of data from a database or user input.
-- The `response.render()` method in Express is used to render and serve EJS templates, with the option to pass data from the app to the view.
+```html
+<html lang="en">
+<%- include("./partials/head.ejs") %>
+
+<body>
+  <%- include("./partials/nav.ejs") %>
+
+  <div class="blogs content">
+    <h2>All Blogs</h2>
+
+    <% if (blogs.length > 0) { %>
+      <% blogs.forEach(blog => { %>
+
+        <h3 class="title"><%= blog.title %></h3>
+        <p class="snippet"><%= blog.snippet %></p>
+
+      <% }) %>
+    <% } else { %>
+      <p>There are no blogs to display...</p>
+    <% } %>
+    
+  </div>
+
+  <%- include("./partials/footer.ejs") %>
+</body>
+</html>
+```
+- In this code snippet above, we have an EJS file, it is just an html file but with EJS code included. What EJS does is lets us dynamically inject elements into the html page based on some condition.  
+- We can just write `<% ... %>` are write a JS line of code in  there, but also we can use `<%- ... %>` which allows us to put some other ejs file (called partials) within current one, kept within './views/partials'. And `<%= title %>` to directly access a variable there.
+
