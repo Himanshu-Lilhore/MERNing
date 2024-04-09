@@ -538,7 +538,7 @@ app.use((req, res) => {
 })
 ```
 
-## About EJS
+### About EJS
 - EJS allows for the injection of dynamic data into HTML templates in Express.
 - View engines like Express Handlebars, Pug, and EJS can be used to create HTML templates with dynamic content.
 - EJS templates can be created in the default “views” folder or in a custom folder specified in the Express configuration.
@@ -574,4 +574,47 @@ app.use((req, res) => {
 ```
 - In this code snippet above, we have an EJS file, it is just an html file but with EJS code included. What EJS does is lets us dynamically inject elements into the html page based on some condition.  
 - We can just write `<% ... %>` are write a JS line of code in  there, but also we can use `<%- ... %>` which allows us to put some other ejs file (called partials) within current one, kept within './views/partials'. And `<%= title %>` to directly access a variable there.
+
+## Middlewares (lesson - 8)
+![Middlewares](./images/middlewares.png)
+Simply, middlewares are is everything that happens between a request made and corresponding response sent (functions generally).  
+
+![MiddlewaresEg](./images/middlewareEg.png)  
+Every file we write, we write all the functions/middlewares from top to bottom. Now where a request is made, the system starts checking for matches (for middleware) from top to bottom and which fulfills the request is the last executed one. So the order in which functions are placed is important here.
+```javascript
+app.use((req, res) => {
+	console.log("New request made")
+	console.log("host : ", req.host)
+	console.log("path : ", req.path)
+	console.log("method : ", req.method)
+})
+```
+Here we created a custom middleware, and if it is placed the top of the file it will always get executed first, and since we have not instructed it to do anything else the system will be stuck there.  
+So if this middleware was just there for logging purposes, we can tell it to move to next function like this :
+```javascript
+app.use((req, res, next) => {
+	console.log("New request made")
+	console.log("host : ", req.host)
+	console.log("path : ", req.path)
+	console.log("method : ", req.method)
+	next()
+})
+```
+### 3rd party middleware
+Instead of creating all these middleware manually, we can use a lots of middlewares already present for a lot of different purposes.  
+1. [**Morgan**](https://www.npmjs.com/package/morgan) (a logger middleware)
+	> npm install morgan  
+
+	```javascript
+	const morgan = require('morgan')
+
+	app.use(morgan('dev'))
+	app.use(morgan('tiny'))
+	```
+2. **Static** (provided by express)  
+	Since browser protects the project files to be accessed by the user diretly using url, we use static to make them public/less restrictive.
+	```javascript
+	app.use(express.static('publicc'))
+	```
+	So any files stored inside this `publicc` folder will be accessible by users too. [conventionally it is name public, but just to avoid keyword confusion i named it publicc here]
 

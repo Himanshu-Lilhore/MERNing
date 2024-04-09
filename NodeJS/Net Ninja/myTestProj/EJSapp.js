@@ -1,4 +1,5 @@
 const express = require('express');
+const morgan = require('morgan')
 
 const app = express();
 
@@ -11,6 +12,17 @@ const blogs = [
     {title: "rtedhfgsdg", snippet: "edrg etsh ghretdh retdhgb rdsthg rethge dthredth ewtdrh et"},
     {title: "tedhgedstg", snippet: "tejtruyjhgewytuj tr yjhgdr etryhgwest hkrtdstyrtu ery yuer6sdut tf"}
 ]
+
+app.use((req, res, next) => {
+	console.log("New request made")
+	console.log("host : ", req.hostname)
+	console.log("path : ", req.path)
+	console.log("method : ", req.method)
+	next()
+})
+
+
+app.use(morgan('dev'))
 
 app.get('/', (req, res) => {
 	res.render('index', {title : "Home", blogs});   // EJS automatically looks for these file names in views folder
