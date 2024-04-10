@@ -618,3 +618,6 @@ Instead of creating all these middleware manually, we can use a lots of middlewa
 	```
 	So any files stored inside this `publicc` folder will be accessible by users too. [conventionally it is name public, but just to avoid keyword confusion i named it publicc here]
 
+## MongoDB (lesson - 9)
+
+
