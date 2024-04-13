@@ -618,6 +618,42 @@ Instead of creating all these middleware manually, we can use a lots of middlewa
 	```
 	So any files stored inside this `publicc` folder will be accessible by users too. [conventionally it is name public, but just to avoid keyword confusion i named it publicc here]
 
+
 ## MongoDB (lesson - 9)
 
+1. Introduction to MongoDB and NoSQL Databases:
+   - MongoDB is a NoSQL database that differs from traditional SQL databases in its data structuring.
+   - Example: SQL databases like MySQL use fixed-schema tables, whereas MongoDB uses collections and documents. For instance, in MongoDB, a collection named "users" can contain documents with varying fields like name, email, and age, providing more flexibility.
+
+2. MongoDB's Structure: Collections and Documents:
+   - MongoDB organizes data into collections, which are analogous to tables in SQL databases, and documents, which are similar to rows or records.
+   - Example: In a MongoDB database, a collection named "products" may contain documents representing different products, each with its own set of fields such as name, price, and category.
+
+3. MongoDB Atlas:
+   - MongoDB Atlas is a cloud-based database service that simplifies the deployment, management, and scaling of MongoDB databases.
+   - Example: Developers can use MongoDB Atlas to host their databases on the cloud, enabling easy access and management from anywhere.
+
+4. Introduction to Mongoose:
+   - Mongoose is an Object Data Modeling (ODM) library for MongoDB in Node.js applications, providing a higher level of abstraction for interacting with MongoDB databases.
+   - Example: With Mongoose, developers can define schemas and models to represent MongoDB data structures and perform CRUD (Create, Read, Update, Delete) operations on collections.
+
+5. Schemas in MongoDB:
+   - Schemas in MongoDB define the structure of documents within a collection, specifying the fields and their data types.
+   - Example: A schema for a "user" document may include fields such as name (String), email (String), and age (Number), ensuring consistency and validation of data.
+
+6. Models in MongoDB:
+   - Models in Mongoose provide an interface for interacting with MongoDB collections, encapsulating CRUD operations and business logic.
+   - Example: A model for the "user" collection can have methods like createUser(), getUserById(), updateUser(), and deleteUser() to perform database operations.
+
+7. Connecting to MongoDB with Mongoose:
+   - Connecting to a MongoDB database using Mongoose involves providing a connection string and using the Mongoose connect method.
+   - Example: Developers can use Mongoose.connect() method with the MongoDB connection string to establish a connection to the database.
+
+8. Key Insights:
+   - NoSQL databases like MongoDB offer flexibility in data structuring compared to SQL databases.
+   - Mongoose simplifies MongoDB interaction by providing a higher level of abstraction.
+   - Schemas and models play crucial roles in defining and interacting with MongoDB data.
+   - MongoDB Atlas provides a convenient way to host and manage MongoDB databases on the cloud.
+   - MongoDB documents are JSON-like structures, making them easy to work with in JavaScript environments.
+   - Connecting to MongoDB using Mongoose requires providing connection details and using Mongoose methods.
 
