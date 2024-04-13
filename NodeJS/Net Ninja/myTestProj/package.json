@@ -2,10 +2,10 @@
   "name": "mytestproj",
   "version": "1.0.0",
   "description": "",
-  "main": "EJSapp.js",
+  "main": "mongoFirst.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon EJSapp.js"
+    "dev": "nodemon mongoFirst.js"
   },
   "author": "",
   "license": "ISC",
@@ -13,6 +13,9 @@
     "ejs": "^3.1.9",
     "express": "^4.19.2",
     "lodash": "^4.17.21",
+    "mongo": "^0.1.0",
+    "mongodb": "^6.5.0",
+    "mongoose": "^8.3.1",
     "morgan": "^1.10.0",
     "nodemon": "^3.1.0"
   }

@@ -634,7 +634,7 @@ Instead of creating all these middleware manually, we can use a lots of middlewa
    - Example: Developers can use MongoDB Atlas to host their databases on the cloud, enabling easy access and management from anywhere.
 
 4. Introduction to Mongoose:
-   - Mongoose is an Object Data Modeling (ODM) library for MongoDB in Node.js applications, providing a higher level of abstraction for interacting with MongoDB databases.
+   - Mongoose is an Object Document Mapping (ODM) library for MongoDB in Node.js applications, providing a higher level of abstraction for interacting with MongoDB databases.
    - Example: With Mongoose, developers can define schemas and models to represent MongoDB data structures and perform CRUD (Create, Read, Update, Delete) operations on collections.
 
 5. Schemas in MongoDB:
@@ -657,3 +657,4 @@ Instead of creating all these middleware manually, we can use a lots of middlewa
    - MongoDB documents are JSON-like structures, making them easy to work with in JavaScript environments.
    - Connecting to MongoDB using Mongoose requires providing connection details and using Mongoose methods.
 
+> **Database > Collections > Documents > Schema (Blueprint/structure of a type of document)**  
