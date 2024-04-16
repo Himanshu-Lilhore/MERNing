@@ -753,3 +753,7 @@ app.get('/blogs', (req, res) => {
     });
 });
 ```
+
+
+### Get, Post & Delete Requests (lesson - 10)
+
