@@ -757,3 +757,72 @@ app.get('/blogs', (req, res) => {
 
 ### Get, Post & Delete Requests (lesson - 10)
 
+![Request Types](./images/requestTypes.png)
+  
+#### Types of Requests:
+1. **GET Requests:**
+   - **Purpose:** Retrieve resources from the server.
+   - **Example:** Fetching user profile information.
+   ```javascript
+   app.get('/user/:id', (req, res) => {
+       // Retrieve user data based on id
+   });
+   ```
+
+2. **POST Requests:**
+   - **Purpose:** Create new data in the database.
+   - **Example:** Submitting a form to add a new product.
+   ```javascript
+   app.post('/products', (req, res) => {
+       // Add new product to the database
+   });
+   ```
+
+3. **DELETE Requests:**
+   - **Purpose:** Delete data from the server.
+   - **Example:** Deleting a specific user account.
+   ```javascript
+   app.delete('/user/:id', (req, res) => {
+       // Delete user data based on id
+   });
+   ```
+
+4. **PUT Requests:**
+   - **Purpose:** Update existing data.
+   - **Example:** Updating user profile information.
+   ```javascript
+   app.put('/user/:id', (req, res) => {
+       // Update user data based on id
+   });
+   ```
+
+#### Route Parameters:
+- **Definition:** Route parameters allow creating dynamic URLs.
+- **Example:** Extracting user id from URL.
+```javascript
+app.get('/user/:id', (req, res) => {
+   const userId = req.params.id;
+   // Retrieve user data based on userId
+});
+```
+
+#### Middleware:
+- **Definition:** Middleware helps in handling form data in POST requests.
+- **Example:** Using `express.urlencoded` middleware to parse form data.
+```javascript
+const express = require('express');
+const app = express();
+
+app.use(express.urlencoded({ extended: false }));
+```
+
+#### Key Insights:
+1. **Understanding Requests:** Knowing the purpose of different request types aids in building CRUD applications effectively.
+2. **Route Parameters:** Facilitates handling dynamic URLs and extracting variable values.
+3. **Middleware:** Utilizing middleware like `express.urlencoded` simplifies form data parsing in POST requests.
+4. **Request Handling:** Setting up appropriate routes and callback functions is essential for handling different types of requests effectively.
+5. **Request Types:**
+   - GET: Retrieve data
+   - POST: Create data
+   - DELETE: Delete data
+   - PUT: Update data
