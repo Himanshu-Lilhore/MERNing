@@ -755,11 +755,11 @@ app.get('/blogs', (req, res) => {
 ```
 
 
-### Get, Post & Delete Requests (lesson - 10)
+## Get, Post & Delete Requests (lesson - 10)
 
 ![Request Types](./images/requestTypes.png)
   
-#### Types of Requests:
+### Types of Requests:
 1. **GET Requests:**
    - **Purpose:** Retrieve resources from the server.
    - **Example:** Fetching user profile information.
@@ -768,6 +768,7 @@ app.get('/blogs', (req, res) => {
        // Retrieve user data based on id
    });
    ```
+   Till now we have only been using GET request.
 
 2. **POST Requests:**
    - **Purpose:** Create new data in the database.
@@ -777,6 +778,31 @@ app.get('/blogs', (req, res) => {
        // Add new product to the database
    });
    ```
+   Now let see how we do it in our program :
+   ```html
+	<div class="create-blog content">
+		<form action="/blogs" method="POST">
+			<label for="title">Blog title : </label>
+			<input type="text" id="title" name="title" required>
+			<label for="snippet">Blog snippet : </label>
+			<input type="text" id="snippet" name="snippet" required>
+			<label for="body">Blog body : </label>
+			<textarea id="body" required name="body"></textarea>
+			<button>Submit</button>
+		</form>
+	</div>
+   ```
+   Now here here in html we are using html form tag which has method and action based on which we can take input from it and send it to backend.
+   We just need to put `name` attribute same as property name that we are going to use in the backend. And on clicking Submit button for that form, it will be sent to backend (because we used method attribute as `POST` for the form element)
+   ```javascript
+   app.use(express.urlencodded()) // middleware
+
+   app.post('/blogs', (req, res) => {
+	const blog = new Blog(req.body)
+
+   })
+   ```
+   Now here before using post we are using a middle in express `urlencoded` which sort the data a bit, and puts in into the body prop of the request object, which we can later use.
 
 3. **DELETE Requests:**
    - **Purpose:** Delete data from the server.
@@ -796,7 +822,7 @@ app.get('/blogs', (req, res) => {
    });
    ```
 
-#### Route Parameters:
+### Route Parameters:
 - **Definition:** Route parameters allow creating dynamic URLs.
 - **Example:** Extracting user id from URL.
 ```javascript
@@ -806,7 +832,7 @@ app.get('/user/:id', (req, res) => {
 });
 ```
 
-#### Middleware:
+### Middleware:
 - **Definition:** Middleware helps in handling form data in POST requests.
 - **Example:** Using `express.urlencoded` middleware to parse form data.
 ```javascript
@@ -816,7 +842,7 @@ const app = express();
 app.use(express.urlencoded({ extended: false }));
 ```
 
-#### Key Insights:
+### Key Insights:
 1. **Understanding Requests:** Knowing the purpose of different request types aids in building CRUD applications effectively.
 2. **Route Parameters:** Facilitates handling dynamic URLs and extracting variable values.
 3. **Middleware:** Utilizing middleware like `express.urlencoded` simplifies form data parsing in POST requests.
