@@ -2,7 +2,7 @@
 
 Source : [Net Ninja - NodeJS crash course](https://youtube.com/playlist?list=PL4cUxeGkcC9jsz4LDYc6kv3ymONOKxwBU&si=cTCCsoFcGkq_TSef)
 
-### Intro (Lesson-1)
+## Intro (Lesson-1)
 
 1. **Server-Side JavaScript Execution**: Node.js empowers developers to execute JavaScript code on the server side, expanding its utility beyond client-side scripting. This enables developers to build full-stack applications using a single language throughout the entire development process.
 
