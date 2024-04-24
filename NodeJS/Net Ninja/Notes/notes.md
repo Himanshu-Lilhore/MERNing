@@ -795,14 +795,17 @@ app.get('/blogs', (req, res) => {
    Now here here in html we are using html form tag which has method and action based on which we can take input from it and send it to backend.
    We just need to put `name` attribute same as property name that we are going to use in the backend. And on clicking Submit button for that form, it will be sent to backend (because we used method attribute as `POST` for the form element)
    ```javascript
-   app.use(express.urlencodded()) // middleware
+   app.use(express.urlencoded()) // middleware
 
    app.post('/blogs', (req, res) => {
-	const blog = new Blog(req.body)
+	  const blog = new Blog(req.body)
 
+    blog.save()
+      .then(result => res.redirect('/blogs'))
+      .catch(err => console.log(err))
    })
    ```
-   Now here before using post we are using a middle in express `urlencoded` which sort the data a bit, and puts in into the body prop of the request object, which we can later use.
+   Now here before using post we are using a middleware in express `urlencoded` which sort the data a bit, and puts in into the body prop of the request object, which we can later use.
 
 3. **DELETE Requests:**
    - **Purpose:** Delete data from the server.
@@ -823,14 +826,15 @@ app.get('/blogs', (req, res) => {
    ```
 
 ### Route Parameters:
-- **Definition:** Route parameters allow creating dynamic URLs.
-- **Example:** Extracting user id from URL.
-```javascript
-app.get('/user/:id', (req, res) => {
-   const userId = req.params.id;
-   // Retrieve user data based on userId
-});
-```
+  - **Definition:** Route parameters allow creating dynamic URLs.
+  - **Example:** Extracting user id from URL.
+  ```javascript
+  app.get('/user/:id', (req, res) => {
+    const userId = req.params.id;
+    // Retrieve user data based on userId
+  });
+  ```
+  ![Route Parameters](./images/route%20parameters.png)  
 
 ### Middleware:
 - **Definition:** Middleware helps in handling form data in POST requests.

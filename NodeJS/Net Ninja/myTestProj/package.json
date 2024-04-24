@@ -2,10 +2,10 @@
   "name": "mytestproj",
   "version": "1.0.0",
   "description": "",
-  "main": "mongoFirst.js",
+  "main": "typesOfReq.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon mongoFirst.js"
+    "dev": "nodemon typesOfReq.js"
   },
   "author": "",
   "license": "ISC",
