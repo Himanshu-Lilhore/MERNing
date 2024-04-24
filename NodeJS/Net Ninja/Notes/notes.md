@@ -758,7 +758,19 @@ app.get('/blogs', (req, res) => {
 ## Get, Post & Delete Requests (lesson - 10)
 
 ![Request Types](./images/requestTypes.png)
-  
+
+### Key Insights:
+1. **Understanding Requests:** Knowing the purpose of different request types aids in building CRUD applications effectively.
+2. **Route Parameters:** Facilitates handling dynamic URLs and extracting variable values.
+3. **Middleware:** Utilizing middleware like `express.urlencoded` simplifies form data parsing in POST requests.
+4. **Request Handling:** Setting up appropriate routes and callback functions is essential for handling different types of requests effectively.
+5. **Request Types:**
+   - GET: Retrieve data
+   - POST: Create data
+   - DELETE: Delete data
+   - PUT: Update data
+
+
 ### Types of Requests:
 1. **GET Requests:**
    - **Purpose:** Retrieve resources from the server.
@@ -815,7 +827,40 @@ app.get('/blogs', (req, res) => {
        // Delete user data based on id
    });
    ```
+  In out program we are handling it like this -  
+  frontend :
+  ```html
+  <div class="details content">
+    <h2><%= blog.title %></h2>
+    <div class="content">
+      <p><%= blog.body %></p>
+    </div>
+    <a class="delete" data-doc="<%= blog._id %>">delete</a>
+  </div>
 
+  <script>
+    const trashcan = document.querySelector('a.delete')
+
+    trashcan.addEventListener('click', (e) => {
+      const endpoint = `/blogs/${trashcan.dataset.doc}`
+
+      fetch(endpoint, { method: 'DELETE' })  // This performs a DELETE request to the endpoint URL. It deletes the blog post corresponding to the _id specified in the URL. The { method: 'DELETE' } option specifies that it's a DELETE request.
+      .then(response => response.json())
+      .then(data => window.location.href = data.redirect)
+      .catch(err => console.log(err))
+    })
+  </script>
+  ```
+  backend :
+  ```javascript
+  app.delete('/blogs/:id', (req, res) => {
+	const id = req.params.id
+
+	Blog.findByIdAndDelete(id)
+		.then(result => res.json({ redirect: '/blogs' }))
+		.catch(err => console.log(err))
+  })
+  ```
 4. **PUT Requests:**
    - **Purpose:** Update existing data.
    - **Example:** Updating user profile information.
@@ -829,10 +874,12 @@ app.get('/blogs', (req, res) => {
   - **Definition:** Route parameters allow creating dynamic URLs.
   - **Example:** Extracting user id from URL.
   ```javascript
-  app.get('/user/:id', (req, res) => {
-    const userId = req.params.id;
-    // Retrieve user data based on userId
-  });
+  app.get('/blogs/:id', (req, res) => {
+    const id = req.params.id
+    Blog.findById(id)
+    .then(result => res.render('details', { blog: result, title: 'Blog Details' }))
+    .catch(err => console.log(err))
+  })
   ```
   ![Route Parameters](./images/route%20parameters.png)  
 
@@ -845,14 +892,3 @@ const app = express();
 
 app.use(express.urlencoded({ extended: false }));
 ```
-
-### Key Insights:
-1. **Understanding Requests:** Knowing the purpose of different request types aids in building CRUD applications effectively.
-2. **Route Parameters:** Facilitates handling dynamic URLs and extracting variable values.
-3. **Middleware:** Utilizing middleware like `express.urlencoded` simplifies form data parsing in POST requests.
-4. **Request Handling:** Setting up appropriate routes and callback functions is essential for handling different types of requests effectively.
-5. **Request Types:**
-   - GET: Retrieve data
-   - POST: Create data
-   - DELETE: Delete data
-   - PUT: Update data
