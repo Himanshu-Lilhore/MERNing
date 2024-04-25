@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 const Blog = require('./models/blog')
 const blogRoutes = require('./routes/blogRoutes')
 
-const config = require('./config')
+// const config = require('./config')
 const DBname = 'firstTest'
 
 const app = express();
