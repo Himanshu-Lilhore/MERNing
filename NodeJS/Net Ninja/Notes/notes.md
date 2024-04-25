@@ -1007,5 +1007,22 @@ module.exports = {
   blog_details
 }
 ```
-And all other routes gets converted accordingly. Also change relative paths for everything acccordingly.  
+And all other routes gets converted accordingly. Also change relative paths for everything acccordingly and do all the necessary imports wherever needed.  
 Having controllers isn't really necessary, but makes code nicer.
+
+
+## Wrap up (lesson - 12)
+
+**Redirecting to 404 for invalid IDs**
+```javascript
+const blog_details = (req, res) => {
+  const id = req.params.id;
+  Blog.findById(id)
+    .then(result => {
+      res.render('details', { blog: result, title: 'Blog Details' });
+    })
+    .catch(err => {
+      res.status(404).render('404', {title : 'Blog not found'}) ///////
+    });
+}
+```
