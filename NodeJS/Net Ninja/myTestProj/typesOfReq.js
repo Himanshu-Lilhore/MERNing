@@ -8,7 +8,11 @@ const DBname = 'firstTest'
 
 const app = express();
 
-const dbURI = `mongodb+srv://${config.username}:${config.password}@cluster0.pyrexfq.mongodb.net/${DBname}?retryWrites=true&w=majority&appName=Cluster0`
+// Storing password using config file :
+// const dbURI = `mongodb+srv://${config.username}:${config.password}@cluster0.pyrexfq.mongodb.net/${DBname}?retryWrites=true&w=majority&appName=Cluster0`
+
+// Storing password in env variables :
+const dbURI = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.pyrexfq.mongodb.net/${DBname}?retryWrites=true&w=majority&appName=Cluster0`
 
 mongoose.connect(dbURI)
 	.then(result => {
