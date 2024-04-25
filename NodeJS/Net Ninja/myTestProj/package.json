@@ -2,10 +2,10 @@
   "name": "mytestproj",
   "version": "1.0.0",
   "description": "",
-  "main": "typesOfReq.js",
+  "main": "routersAndControllers.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon typesOfReq.js"
+    "dev": "nodemon routersAndControllers.js"
   },
   "author": "",
   "license": "ISC",

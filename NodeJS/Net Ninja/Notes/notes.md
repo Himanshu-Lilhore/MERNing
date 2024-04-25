@@ -892,3 +892,120 @@ const app = express();
 
 app.use(express.urlencoded({ extended: false }));
 ```
+
+## Express router & MVC (lesson - 11)
+
+1. **Express Router Introduction**:
+   - Express Router is a feature in Express.js for efficient route management.
+   - It becomes crucial as projects scale.
+   ```javascript
+   const express = require('express');
+   const router = express.Router();
+   ```
+
+2. **Splitting Routes with Express Router**:
+   - Routes can be divided into separate files based on functionality.
+   - Enhances modularity and maintainability.
+   ```javascript
+   // In separate route files, e.g., userRoutes.js
+   const express = require('express');
+   const router = express.Router();
+   router.get('/', (req, res) => {
+       // Route handling logic
+   });
+   module.exports = router;
+   ```
+
+3. **Introduction to MVC**:
+   - MVC (Model-View-Controller) helps organize code into models, views, and controllers.
+   - Improves code structure and maintainability.
+   ```javascript
+   // Controller example
+   const UserController = {
+       getUsers(req, res) {
+           // Controller logic
+       }
+   };
+   ```
+
+4. **Benefits of MVC**:
+   - Models define data structure.
+   - Views handle presentation.
+   - Controllers bridge models and views.
+   - Enhances reusability and maintainability.
+   
+5. **Controller Separation**:
+   - Extracting route handler functions into separate controller files.
+   - Improves code readability and organization.
+   ```javascript
+   // UserController.js
+   const User = require('../models/User');
+   const UserController = {
+       getUsers(req, res) {
+           // Controller logic
+       }
+   };
+   module.exports = UserController;
+   ```
+
+6. **Scoping Routes**:
+   - Express Router allows scoping routes to specific URLs.
+   - Better control and organization.
+   ```javascript
+   // Example of route scoping
+   router.use('/users', userRoutes);
+   ```
+
+7. **Folder Organization**:
+   - Creating separate folders for resources/views (e.g., blogs, users).
+   - Avoids naming clashes and maintains organization.
+   ```
+   - controllers/
+     - UserController.js
+   - routes/
+     - userRoutes.js
+   ```
+
+8. **Partial Views**:
+   - Use of partials in views for reusable components.
+   - Enhances maintainability and efficiency.
+   ```javascript
+   <!-- Example of partial view -->
+   <%- include('partials/header') %>
+   ```
+
+In out project, what used to be this :
+```javascript
+// . > main.js
+app.get('/blogs/:id', (req, res) => {
+	const id = req.params.id
+	Blog.findById(id)
+	.then(result => res.render('details', { blog: result, title: 'Blog Details' }))
+	.catch(err => console.log(err))
+})
+```
+Gets splitted into these :
+```javascript
+// . > main.js
+app.use('/blogs', blogRoutes);
+
+// . > routes > blogRoutes.js
+router.get('/:id', blogController.blog_details);
+
+// . > controllers > blogController.js
+const blog_details = (req, res) => {
+  const id = req.params.id;
+  Blog.findById(id)
+    .then(result => {
+      res.render('details', { blog: result, title: 'Blog Details' });
+    })
+    .catch(err => {
+      console.log(err);
+    });
+}
+module.exports = {
+  blog_details
+}
+```
+And all other routes gets converted accordingly. Also change relative paths for everything acccordingly.  
+Having controllers isn't really necessary, but makes code nicer.
