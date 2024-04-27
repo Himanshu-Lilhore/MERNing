@@ -16,7 +16,7 @@ const dbURI = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWOR
 
 mongoose.connect(dbURI)
 	.then(result => {
-		app.listen(3000)
+		app.listen(process.env.PORT || 3000)
 		console.log("CONNECTED SUCCESSFULLY TO DB")
 	})
 	.catch(err => console.log("FAILED TO CONNECT TO DB : \n" + err))
