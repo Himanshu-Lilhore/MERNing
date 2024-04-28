@@ -16,13 +16,25 @@
    const dbURI = `mongodb+srv://${config.username}:${config.password}@cluster0.pyrexfq.mongodb.net/${DBname}`;
    ```
 
-**Using Environment Variables:**
+**Using Environment Variables with dotenv:**
 
 1. **Setup:**
-   - In Windows Command Prompt:
+   - Install dotenv:
      ```bash
-     set DB_USERNAME=your_username
-     set DB_PASSWORD=your_password
+     npm install dotenv
+     ```
+
+   - Create a file named `.env` in the root of your project directory.
+
+   - Inside `.env`, add your environment variables:
+     ```
+     DB_USERNAME=your_username
+     DB_PASSWORD=your_password
+     ```
+
+   - At the top of your main application file, add the following line:
+     ```javascript
+     require('dotenv').config();
      ```
 
 2. **Access:**
@@ -30,3 +42,4 @@
    // In your main application file
    const dbURI = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.pyrexfq.mongodb.net/${DBname}`;
    ```
+## Make sure to add .env to your .gitignore file to avoid committing sensitive information to your repository.
