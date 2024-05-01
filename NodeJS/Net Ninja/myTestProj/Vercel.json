@@ -1,9 +1,9 @@
 {
-    "version": 2,
-    "builds": [
-      { "src": "./routersAndControllers.js", "use": "@vercel/node" }
-    ],
-    "routes": [
-      { "src": "/(.*)", "dest": "/routersAndControllers.js" }
-    ]
+  "version": 2,
+  "builds": [
+    { "src": "./routersAndControllers.js", "use": "@vercel/node" }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "/routersAndControllers.js" }
+  ]
 }
