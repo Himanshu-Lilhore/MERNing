@@ -1,0 +1,19 @@
+Two folders :
+1. Frontend -
+    npm create vite@latest "proj_name" -- --template react --yes & cd "proj_name" & npm install & code .
+
+2. Backend -
+    npm init
+    npm i express cors dotenv
+    npm install --save-dev nodemon
+
+    create 'server.js' file in backend folder.
+
+    "scripts": {
+    "dev": "nodemon server.js",
+    "start":"node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+    }
+
+    npm run dev  : command for dev env
+    npm run start  : command for prod env
