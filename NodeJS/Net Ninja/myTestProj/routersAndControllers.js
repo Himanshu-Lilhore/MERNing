@@ -13,19 +13,21 @@ const app = express();
 // const dbURI = `mongodb+srv://${config.username}:${config.password}@cluster0.pyrexfq.mongodb.net/${DBname}?retryWrites=true&w=majority&appName=Cluster0`
 const dbURI = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.pyrexfq.mongodb.net/${DBname}?retryWrites=true&w=majority&appName=Cluster0`
 
-mongoose.connect(dbURI)
-	.then(result => {
-		app.listen(process.env.PORT || 3000)
-		console.log("CONNECTED SUCCESSFULLY TO DB")
-		console.log(`Listening to ${process.env.PORT}`)
-	})
-	.catch(err => console.log("FAILED TO CONNECT TO DB : \n" + err))
-
 app.set('view engine', 'ejs')
 
 app.use(express.static('public'));
 app.use(morgan('dev'))
 app.use(express.urlencoded())
+
+
+mongoose.connect(dbURI)
+	.then(result => {
+		app.listen(process.env.PORT)
+		console.log("CONNECTED SUCCESSFULLY TO DB")
+		console.log(`Listening to ${process.env.PORT}`)
+	})
+	.catch(err => console.log("FAILED TO CONNECT TO DB : \n" + err))
+
 
 app.use((req, res, next) => {
 	console.log("New request made")
