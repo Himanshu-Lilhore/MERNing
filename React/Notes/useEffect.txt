@@ -7,3 +7,29 @@
 4. **Difference**: `useState` manages state and triggers re-renders, while `useEffect` manages side effects and specifies when they should run and clean up.
 
 In essence, `useState` is for managing component state, while `useEffect` is for managing tasks that happen outside the normal component rendering process. They work together to provide dynamic and interactive behavior in React functional components.
+
+
+# Better explanation :
+
+A component has a life cycle. Initialization > mounting (on the screen) > updating > dismounting > (repeat)
+So useEffect will run that function when component mounts on the screen for the first time and never again, unless you specify a state in its dependency array, so whenever any of the states mentioned in the dependency array changes the function will rerun.
+We can also return a function which will run when component dismounts (it also counts as dismount when value is updated and component rerenders becuase component with older value was dismounted and with newer value was mounted). See examples :
+
+
+useEffect(() => {
+    console.log("This will run just on mounting and never again")
+}, [])
+
+
+useEffect(() => {
+    console.log("This will run on mounting, and then everytime any of name or email states update")
+}, [name, email])
+
+
+useEffect(() => {
+    console.log("This will run just on mounting and never again")
+
+    return () => {
+        console.log("This will run when component dismounts")
+    }
+}, [])
