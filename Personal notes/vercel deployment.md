@@ -5,13 +5,13 @@
 ```json
 // backend/vercel.json
 {
-  "version": 2,
-  "builds": [
-    { "src": "./server.js", "use": "@vercel/node" }
-  ],
-  "routes": [
-    { "src": "/(.*)", "dest": "/server.js" }
-  ]
+    "version": 2,
+    "builds": [
+      { "src": "./app.js", "use": "@vercel/node" }
+    ],
+    "routes": [
+      { "src": "/(.*)", "dest": "/app.js" }
+    ]
 }
 ```
 
@@ -20,13 +20,18 @@
 ```json
 // frontend/vercel.json
 {
-  "version": 2,
-  "builds": [
-    { "src": "./", "use": "@vercel/static-build" }
-  ],
-  "routes": [
-    { "src": "/(.*)", "dest": "/index.html" }
-  ]
+    "version": 2,
+    "builds": [
+      {
+        "src": "package.json",
+        "use": "@vercel/static-build",
+        "config": { "distDir": "dist" }
+      }
+    ],
+    "routes": [
+      { "handle": "filesystem" },
+      { "src": "/(.*)", "dest": "/index.html" }
+    ]
 }
 ```
 
@@ -56,7 +61,19 @@
 }
 ```
 
-5. **Deploy to Vercel:**
+5. **Make sure vite.config.js should be like this (frontend):**
+```json
+{
+  // ...
+  plugins: [react()],
+  build: {
+    outDir: 'dist'
+  }
+  // ...
+}
+```
+
+6. **Deploy to Vercel:**
    
    - Commit your changes to your Git repository.
    - Deploy both front and back end sepertely.
