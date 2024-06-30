@@ -17,3 +17,7 @@ Two folders :
 
     npm run dev  : command for dev env
     npm run start  : command for prod env
+
+add .gitignore file in root :
+	**/.env
+	node_modules/
