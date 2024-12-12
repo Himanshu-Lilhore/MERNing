@@ -1,0 +1,44 @@
+Redux toolkit
+
+🧵(1/5)
+ Basic ugly todo app implementation
+
+
+
+🧵(2/5)
+Redux comes in handy to have a global state in apps instead of having to pass values down the components using props.
+
+Redux toolkit is an improvement on Redux. react-redux is react implementation of that library, we use both in our app to use redux toolkit.
+
+
+
+🧵(3/5)
+
+// src/app/store.js
+First of all we create a store, which stores all the data in the single place.
+
+We pass an object to configure store method containing all states.
+
+Reduces key takes an object (listing states for all the features) or just a single state too.
+
+
+
+🧵(4/5)
+// src/features/todo/todoSlice.js
+Slice contains properties and reducers for a state
+createSlice initializes it with an obj
+
+Reducers have :
+state- latest state
+action- parameters on function call
+
+Export reducers (for components) & state (to make main store aware of it)
+
+
+
+🧵(5/5)
+// src/components/AddTodo.jsx
+useDispatch is uses reducers to save values into the store.
+
+// scr/components/ViewTodo.jsx
+useSelector is used to view store values (often specific states are stores locally instead of whole store)
