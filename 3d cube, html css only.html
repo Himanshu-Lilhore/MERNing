@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Interactive Pure-CSS 3D Cube</title>
+  <style>
+    :root {
+      --cube-size: 100px;
+    }
+    body {
+      margin: 0;
+      background-color: black;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      perspective: 800px;
+      user-select: none; /* prevent text selection during drag */
+    }
+    .controls {
+      margin-bottom: 1rem;
+    }
+    .controls label {
+      font-family: sans-serif;
+      margin-right: 0.5rem;
+    }
+    .spinner {
+      position: relative;
+      width:  var(--cube-size);
+      height: var(--cube-size);
+      transform-style: preserve-3d;
+      /* initial tilt */
+      transform: rotateX(-25deg) rotateY(25deg);
+      cursor: grab;
+    }
+    .spinner:active {
+      cursor: grabbing;
+    }
+    .spinner > div {
+      position: absolute;
+      width:  100%;
+      height: 100%;
+      background: rgba(38, 0, 255, 0.2);
+      border: 2px solid #004dff;
+    }
+    .spinner .front  { transform: translateZ(calc(var(--cube-size)/2)); }
+    .spinner .back   { transform: translateZ(calc(-1*var(--cube-size)/2)) rotateY(180deg); }
+    .spinner .left   { transform: rotateY(-90deg) translateX(calc(-1*var(--cube-size)/2));  transform-origin: center left; }
+    .spinner .right  { transform: rotateY( 90deg) translateX(calc(var(--cube-size)/2));     transform-origin: center right; }
+    .spinner .top    { transform: rotateX( 90deg) translateY(calc(-1*var(--cube-size)/2)); transform-origin: top center; }
+    .spinner .bottom { transform: rotateX(-90deg) translateY(calc(var(--cube-size)/2));     transform-origin: bottom center; }
+  </style>
+</head>
+<body>
+
+  <div class="controls">
+    <label for="sizePicker" style="color: white">Cube size:</label>
+    <input id="sizePicker" type="number" value="100" min="20" max="300" /> px
+  </div>
+
+  <div class="spinner" id="cube">
+    <div class="back"></div>
+    <div class="left"></div>
+    <div class="right"></div>
+    <div class="top"></div>
+    <div class="bottom"></div>
+    <div class="front"></div>
+  </div>
+
+  <script>
+    // -- size control --
+    const sizeInput = document.getElementById('sizePicker');
+    sizeInput.addEventListener('input', e => {
+      let val = Math.max(20, Math.min(300, +e.target.value));
+      document.documentElement.style.setProperty('--cube-size', val + 'px');
+    });
+
+    // -- mouse/touch control for rotation --
+    const cube = document.getElementById('cube');
+    let isDragging = false;
+    let lastX = 0, lastY = 0;
+    // store current rotation
+    let rotX = -25, rotY = 25;
+
+    const startDrag = e => {
+      isDragging = true;
+      lastX = e.clientX ?? e.touches[0].clientX;
+      lastY = e.clientY ?? e.touches[0].clientY;
+    };
+    const onDrag = e => {
+      if (!isDragging) return;
+      const x = e.clientX ?? e.touches[0].clientX;
+      const y = e.clientY ?? e.touches[0].clientY;
+      const dx = x - lastX;
+      const dy = y - lastY;
+      // rotate more in Y for horizontal drag, and X for vertical
+      rotY += dx * 0.5;
+      rotX -= dy * 0.5;
+      // clamp X so you don’t flip upside down
+      rotX = Math.max(-90, Math.min(90, rotX));
+      cube.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+      lastX = x; lastY = y;
+    };
+    const endDrag = () => { isDragging = false; };
+
+    cube.addEventListener('mousedown', startDrag);
+    cube.addEventListener('touchstart', startDrag, {passive: true});
+    window.addEventListener('mousemove', onDrag);
+    window.addEventListener('touchmove', onDrag, {passive: true});
+    window.addEventListener('mouseup', endDrag);
+    window.addEventListener('touchend', endDrag);
+
+  </script>
+</body>
+</html>
